@@ -21,7 +21,7 @@ module.exports = ReceiptDetail = americano.getModel('receiptdetail', {
 
 ReceiptDetail.all = function(callback) {
     ReceiptDetail.request(
-        "all", 
+        "all",
         {},
         function(err, instances) {
             callback(null, instances);
@@ -29,3 +29,15 @@ ReceiptDetail.all = function(callback) {
     );
 };
 
+ReceiptDetail.withReceiptId = function(receiptIdValue, callback) {
+    ReceiptDetail.request(
+        "byReceiptId",
+        {
+            key: receiptIdValue
+
+            },
+        function(err, instances) {
+            callback(null, instances);
+        }
+    );
+};

@@ -1,4 +1,7 @@
 ReceiptDetail = require('../models/receiptdetail')
+baseCarbone = require('./baseCarbone')
+
+
 
 module.exports.list = function(req, res) {
   ReceiptDetail.all(function(err, instances) {
@@ -6,29 +9,64 @@ module.exports.list = function(req, res) {
       res.send(500, "An error has occurred -- " + err);
     }
     else {
-      data = {"receiptDetails": instances};
-      html = render(data);
+      for (var i = 0; i < instances.length; i++) {
+        var family = 'a'+instances[i].family;
+        instances[i].emission = baseCarbone[family].empreinteCarbone;
+      };
+
+      var totalEmissions = 0;
+      for (var i = 0; i < instances.length; i++) {
+        totalEmissions += instances[i].emission;
+      };
+      html = render(instances, totalEmissions);
       res.send(200, html);
     }
   });
 };
 
-function render(data) {
+module.exports.withReceiptId = function(req, res) {
+
+    ReceiptDetail.withReceiptId(req.params.receiptid, function(err, instances) {
+        if(err != null) {
+            res.send(500, "An error has occurred -- " + err);
+        }
+        else {
+          for (var i = 0; i < instances.length; i++) {
+            var family = 'a'+instances[i].family;
+            instances[i].emission = baseCarbone[family].empreinteCarbone;
+          };
+
+          var totalEmissions = 0;
+          for (var i = 0; i < instances.length; i++) {
+            totalEmissions += instances[i].emission;
+          };
+          html = render(instances, totalEmissions);
+          res.send(200, html);
+        }
+    });
+};
+
+// function render (data) {
+//   return '<p>'+data+'</p>'
+// };
+
+function render(instances, totalEmissions) {
 
     receiptDetailsHtml = ''
-    for (idx in data.receiptDetails) {
-        receiptDetail = data.receiptDetails[idx];
+    for (idx in instances) {
+        receiptDetail = instances[idx];
         receiptDetailsHtml +=
 '        <div class="col-md-6">\n' +
-'          <div class="thumbnail row">\n' +            
+'          <div class="thumbnail row">\n' +
 '            <div class="col-md-2 text-center">\n' +
 '              <img class="img-responsive" src="' +
-          'http://drive.intermarche.com/ressources/images/produit/vignette/0' + receiptDetail.barcode + '.jpg"/>\n' + 
+          'http://drive.intermarche.com/ressources/images/produit/vignette/0' + receiptDetail.barcode + '.jpg"/>\n' +
 '              <h4>' + receiptDetail.price + ' €</h4>\n' +
 '            </div>\n' +
 '            <div class="col-md-10">\n' +
+                '<h1>'+ receiptDetail.emission+' kg de CO2</h1>\n'+
 '              <h4>' + receiptDetail.label + '</h4>\n' +
-'              <p>' + receiptDetail.sectionLabel + 
+'              <p>' + receiptDetail.sectionLabel +
            ' &gt; ' + receiptDetail.familyLabel + ' &gt; ' +
           '<small>' + receiptDetail.barcode + '</small></p>\n' +
 '              <p>' + receiptDetail.amount + ' X , Le ' + receiptDetail.timestamp.toDateString() + '</p>\n' +
@@ -38,7 +76,7 @@ function render(data) {
 
     }
 
-    header = 
+    header =
 '<!DOCTYPE html>\n' +
 '<html>\n' +
 '  <head>\n' +
@@ -52,10 +90,11 @@ function render(data) {
 '  <body>\n' +
 '    <div class="container">\n' +
 '      <h1>Mes caddies !</h1>\n' +
+      '<h1> Total Émissions : '+totalEmissions+' kg de CO2</h1>\n'+
 '      <div class="row">\n' ;
 
 
-    footer = 
+    footer =
 '      </div>\n' +
 '    </div>\n' +
 
