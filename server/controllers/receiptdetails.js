@@ -2,7 +2,6 @@ ReceiptDetail = require('../models/receiptdetail')
 baseCarbone = require('./baseCarbone')
 
 
-
 module.exports.list = function(req, res) {
   ReceiptDetail.all(function(err, instances) {
     if(err != null) {

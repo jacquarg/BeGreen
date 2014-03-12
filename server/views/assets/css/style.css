@@ -1,0 +1,214 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+body {
+    /*background: #222;*/
+}
+
+.container {
+    max-width: 1200px;
+    min-width: 350px;
+    margin: auto;
+}
+
+p, h1, h2, h3, span, a {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+header {
+    width: 100%;
+    background: #4ab56f;
+    height: 60px;
+}
+
+#logo-begreen {
+    height: 40px;
+    width: 40px;
+    padding-top: 10px;
+    float: left;
+}
+
+header h1 {
+    float: left;
+    font-family: 'Pacifico', cursive, sans-serif;
+    color: #FFF;
+    vertical-align: middle;
+    font-size: 2em;
+    line-height: 60px;
+}
+
+menu {
+    border-bottom: 1px solid #bbbbbb;
+}
+
+nav {
+    height: 60px;
+}
+
+menu nav a {
+    display: block;
+    position: relative;
+    margin-top: 20px;
+    /*bottom: 0;*/
+    border-radius: 5px 5px 0 0;
+    height: 40px;
+    width: 140px;
+    list-style: none;
+    float: left;
+    margin-left: 10px;
+    background: #f0f0f0;
+    /*height: 60px;*/
+    /*vertical-align: bottom;*/
+    text-decoration: none;
+}
+
+menu nav a li {
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 15px;
+    text-decoration: none;
+    /*margin-top: 20px;*/
+    color: #4ab56f;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+aside {
+    display: block;
+    border-left: solid 1px #bbbbbb;
+    border-right: solid 1px #bbbbbb;
+    float: left;
+    width: 33%;
+    max-width: 300px;
+    height: 2000px;
+    background: #e4e4e4;
+}
+
+aside h1 {
+    position: relative;
+    padding-top: 30px;
+    padding-left: 20px;
+    color: #4ab56f;
+}
+
+aside nav {
+    margin-top: 20px;
+}
+
+aside nav a {
+    height: 50px;
+    position: relative;
+    display: block;
+    padding-left: 30px;
+    text-decoration: none;
+    color: #aaaaaa;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+
+aside nav a:hover {
+    background: #f0f0f0;
+}
+
+
+
+
+
+
+
+section {
+    display: block;
+    border-right: solid 1px #bbbbbb;
+    float: left;
+    width: 66%;
+    max-width: 900px;
+    height: 2000px;
+}
+
+#graph {
+    height: 200px;
+}
+
+section h1 {
+    padding-left: 30px;
+    font-size: 1.6em;
+    color: #4ab56f;
+    margin-bottom: 30px;
+}
+
+
+section li {
+    border-top: 1px solid #bbbbbb;
+    height: 50px;
+}
+
+#date {
+    display: block;
+    height: 50px;
+    width: 50px;
+    background: #ededed;
+}
+
+#date p {
+    color: #8e8e8e;
+    text-align: center;
+    line-height: 22px;
+    vertical-align: middle;
+}
+
+section li div {
+    display: block;
+    float: left;
+}
+
+#libelle {
+    color: #39774e;
+    padding-top: 6px;
+    padding-left: 10px;
+}
+
+#family {
+    color: #6b6b6b;
+    font-size: 0.8em;
+    padding-top: 8px;
+    padding-left: 10px;
+}
+
+#result-line {
+    margin-top: 13px;
+    margin-right: 10px;
+    float: right;
+    display: block;
+    height: 25px;
+    width: 120px;
+    background: #4ab56f;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 1em;
+    text-align: center;
+    line-height: 22px;
+    vertical-align: middle;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
