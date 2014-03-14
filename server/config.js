@@ -1,19 +1,25 @@
 var americano = require('americano');
 
 module.exports = {
-    common: [
-        americano.bodyParser(),
-        americano.methodOverride(),
-        americano.errorHandler({
-            dumpExceptions: true,
-            showStack: true
-        }),
-        americano.static(__dirname + '/../client/public', {
-            maxAge: 86400000
-        })/*,
-        americano.set('views', __dirname + '/../client'),
-        americano.engine('.html', require('jade').__express)*/
-    ],
+    common: {
+        use: [
+          americano.bodyParser(),
+          americano.methodOverride(),
+          americano.errorHandler({
+              dumpExceptions: true,
+              showStack: true
+          }),
+          americano.static(__dirname + '/../client/public', {
+              maxAge: 86400000
+          }),
+        ],
+        set: {
+          views:  __dirname + '/../client',
+        },
+        engine: {
+          '.html': require('ejs').__express,
+        },
+    },
     development: [
         americano.logger('dev')
     ],

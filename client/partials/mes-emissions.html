@@ -1,0 +1,28 @@
+      <div class="container">
+        <div class="row">
+          <aside>
+            <h1>Données affichées</h1>
+            <nav>
+              <a class="active" href="#">Achats</a>
+              <a href="#">Transports<span>BIENTÔT DISPONIBLE</span> </a>
+              <a href="#">Habitation<span>BIENTÔT DISPONIBLE</span> </a>
+            </nav>
+          </aside>
+          <section>
+            <div id="graph-mes-emissions">
+            </div>
+            <h1>Dernières sources d'émissions</h1>
+            <ul>
+              <li ng-repeat="data in datas | orderBy:'-timestamp'">
+<!--                 <div id="date"><p>25<br/>FEV.</p></div>
+ -->
+                <div id="date"><p>{{data.timestamp | date:'dd'}}<br/> {{ data.timestamp | date : 'MMM' }}</p></div>
+                 <div id="content">
+                  <p id="libelle">{{ data.label }}</p>
+                  <p id="family">{{ data.familyLabel }}</p>
+                </div>
+                <div id="result-line"><p>0.43 Kg de CO2</p></div>
+            </ul>
+          </section>
+        </div>
+      </div>

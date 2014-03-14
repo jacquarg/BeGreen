@@ -37,6 +37,20 @@ header h1 {
     line-height: 60px;
 }
 
+#a-propos {
+    display: inline-block;
+    float: right;
+    vertical-align: middle;
+    line-height: 60px;
+    padding-right: 20px;
+    color: #FFF;
+    text-decoration: none;
+}
+
+#a-propos:hover {
+    text-decoration: underline;
+}
+
 menu {
     border-bottom: 1px solid #bbbbbb;
 }
@@ -73,6 +87,15 @@ menu nav a li {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+menu nav .active {
+    background: #4ab56f;
+
+}
+
+menu nav .active li {
+        color: #FFF;
+}
+
 aside {
     display: block;
     border-left: solid 1px #bbbbbb;
@@ -106,6 +129,13 @@ aside nav a {
     line-height: 50px;
 }
 
+aside nav a span {
+    display: block;
+    float: right;
+    padding-right: 10px;
+    font-size: 0.7em;
+}
+
 
 aside nav a:hover {
     background: #f0f0f0;
@@ -121,13 +151,22 @@ section {
     display: block;
     border-right: solid 1px #bbbbbb;
     float: left;
-    width: 66%;
+    width: 74%;
     max-width: 900px;
     height: 2000px;
 }
 
-#graph {
+#graph-mes-emissions {
     height: 200px;
+    border-bottom: solid 1px #4ab56f;
+    margin-bottom: 20px;
+}
+
+#graph-analyse {
+    height: 200px;
+    border-bottom: solid 1px #4ab56f;
+    margin-bottom: 20px;
+    width: 70%;
 }
 
 section h1 {
@@ -189,9 +228,38 @@ section li div {
     text-align: center;
     line-height: 22px;
     vertical-align: middle;
-
 }
 
+#select-periode {
+    display: block;
+    position: relative;
+    margin: auto;
+    width: 350px;
+    height: 40px;
+    border: 2px solid #4ab56f;
+    border-radius: 3px;
+    margin-top: 30px;
+}
+
+#select-periode a {
+    display: block;
+    position: relative;
+    margin: auto;
+    width: 175px;
+    height: 40px;
+    float: left;
+    box-sizing: border-box;
+    color: #4ab56f;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 36px;
+}
+
+#select-periode .active {
+    background: #4ab56f;
+    color: #FFF;
+}
 
 
 

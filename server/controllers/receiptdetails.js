@@ -1,6 +1,11 @@
 ReceiptDetail = require('../models/receiptdetail')
 baseCarbone = require('./baseCarbone')
 
+module.exports.index = function (req, res) {
+  res.render('index.ejs', function(err, html) {
+      res.send(200, html);
+  });
+}
 
 module.exports.list = function(req, res) {
   ReceiptDetail.all(function(err, instances) {
@@ -18,7 +23,7 @@ module.exports.list = function(req, res) {
         totalEmissions += instances[i].emission;
       };
       html = render(instances, totalEmissions);
-      res.send(200, html);
+      res.send(200, instances);
     }
   });
 };

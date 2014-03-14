@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr" ng-app="begreenApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>BeGreen</title>
+  <link href='http://fonts.googleapis.com/css?family=Pacifico|Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/app.css"/>
+</head>
+<body>
+
+      <header>
+        <div class="container">
+          <a href="#">
+            <img src="assets/images/logo-begreen.png" alt="logo-begreen" id="logo-begreen">
+            <h1>BeGreen</h1>
+          </a>
+          <a href="#/a-propos" id="a-propos">À propos</a>
+        </div>
+      </header>
+
+      <menu id="menu">
+        <div class="container">
+          <nav>
+            <a href="#/mes-emissions" class="active"><li>Mes émissions</li></a>
+            <a href="#/analyse"><li>Analyse</li></a>
+            <a href="#/objectifs"><li>Objectifs</li></a>
+            <a href="#/conseils"><li>Conseils</li></a>
+          </nav>
+        </div>
+      </menu>
+
+      <div ng-view></div>
+
+  <!-- In production use: -->
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script> -->
+
+  <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>  <script src="lib/angular/angular.js"></script> -->
+  <!-- <script src="lib/jquery/jquery-1.10.2.js"></script> -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-resource.js"></script>
+  <script src="lib/angular/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+</body>
+</html>
