@@ -1,4 +1,6 @@
 americano = require('americano');
+baseCarbone = require('./baseCarbone');
+
 
 module.exports = ReceiptDetail = americano.getModel('receiptdetail', {
  'origin': String,
@@ -46,5 +48,6 @@ ReceiptDetail.withReceiptId = function(receiptIdValue, callback) {
 };
 
 ReceiptDetail.afterInitialize = function () {
-    // body...
+    var family = 'a'+this.family;
+    this.emission = baseCarbone[family].empreinteCarbone;
 }

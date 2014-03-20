@@ -6,10 +6,6 @@ ReceiptDetails = require('./receiptdetails');
 
 module.exports = {
 
-    '': {
-        get: ReceiptDetails.index
-    },
-
     'receiptdetails': {
         get: ReceiptDetails.list
     },

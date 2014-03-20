@@ -12,13 +12,7 @@ module.exports = {
           americano.static(__dirname + '/../client', {
               maxAge: 86400000
           }),
-        ],
-        set: {
-          views:  __dirname + '/../client',
-        },
-        engine: {
-          '.html': require('ejs').__express,
-        },
+        ]
     },
     development: [
         americano.logger('dev')
