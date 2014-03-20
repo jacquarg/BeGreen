@@ -11,10 +11,14 @@ body {
     /*background: #222;*/
 }
 
-.container {
+/*.container {
     max-width: 1200px;
     min-width: 350px;
     margin: auto;
+}*/
+
+a:hover {
+    text-decoration: none;
 }
 
 p, h1, h2, h3, span, a {
@@ -50,7 +54,7 @@ header h1 {
 }
 
 #a-propos {
-    display: inline-block;
+    /*display: inline-block;*/
     float: right;
     vertical-align: middle;
     line-height: 60px;
@@ -115,6 +119,24 @@ menu nav .active li {
         color: #FFF;
 }
 
+#total-mois {
+    float: right;
+    /*vertical-align: middle;*/
+    line-height: 25px;
+    padding-right: 20px;
+    text-align: right;
+    /*color: #FFF;*/
+    /*text-decoration: none;*/
+}
+
+#total-mois p {
+    color: #4ab56f;
+}
+
+#total-emissions {
+    font-size: 1.3em;
+}
+
 /*****************
 ***
 *** ASIDE
@@ -122,13 +144,13 @@ menu nav .active li {
 *****************/
 
 aside {
-    display: block;
+    /*display: block;*/
     border-left: solid 1px #bbbbbb;
     border-right: solid 1px #bbbbbb;
-    float: left;
-    width: 33%;
-    max-width: 300px;
-    height: 2000px;
+    /*float: left;*/
+    /*width: 33%;*/
+    /*max-width: 300px;*/
+    height: 100%;
     background: #e4e4e4;
 }
 
@@ -154,6 +176,10 @@ aside nav a {
     line-height: 50px;
 }
 
+a:hover {
+    color: #aaaaaa;
+}
+
 aside nav a span {
     display: block;
     float: right;
@@ -173,12 +199,12 @@ aside nav a:hover {
 *****************/
 
 section {
-    display: block;
+    /*display: block;*/
     border-right: solid 1px #bbbbbb;
-    float: left;
-    width: 74%;
-    max-width: 900px;
-    height: 2000px;
+    /*float: left;*/
+    /*width: 74%;*/
+    /*max-width: 900px;*/
+    /*height: 2000px;*/
 }
 
 #graph-mes-emissions {
@@ -188,6 +214,7 @@ section {
 }
 
 section h1 {
+    padding-top: 30px;
     padding-left: 30px;
     font-size: 1.6em;
     color: #4ab56f;
@@ -275,8 +302,8 @@ section li div {
     display: block;
     position: relative;
     margin: auto;
-    width: 175px;
-    height: 40px;
+    width: 173px;
+    height: 36px;
     float: left;
     box-sizing: border-box;
     color: #4ab56f;

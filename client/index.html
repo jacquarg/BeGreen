@@ -5,6 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>BeGreen</title>
   <link href='http://fonts.googleapis.com/css?family=Pacifico|Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/bootstrap.css"/>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
@@ -22,26 +23,30 @@
       <menu id="menu">
         <div class="container">
           <nav>
-            <a href="#/mes-emissions" class="active"><li>Mes émissions</li></a>
-            <a href="#/analyse/evolution-temps"><li>Analyse</li></a>
+            <a href="#/mes-emissions" ng-click="console.log('click')"><li>Mes émissions</li></a>
+            <a href="#/analyse/evolution-temps" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked('analyse')"><li>Analyse</li></a>
             <a href="#/objectifs"><li>Objectifs</li></a>
             <a href="#/conseils"><li>Conseils</li></a>
+            <div id="total-mois">
+              <p>Total mars 2014</p>
+              <p id="total-emissions">73,8 Kg de CO2</p>
+            </div>
           </nav>
         </div>
       </menu>
 
       <div class="container">
         <div class="row">
-          <aside>
+          <aside class="col-lg-3">
             <h1>Données affichées</h1>
             <nav>
               <a class="active" href="#">Achats</a>
-              <a href="#">Transports<span>BIENTÔT DISPONIBLE</span> </a>
-              <a href="#">Habitation<span>BIENTÔT DISPONIBLE</span> </a>
+              <a href="#">Transports<span>BIENTÔT</span> </a>
+              <a href="#">Habitation<span>BIENTÔT</span> </a>
             </nav>
           </aside>
 
-      <div ng-view></div>
+      <div ng-view class="col-lg-9"></div>
 
         </div>
       </div>

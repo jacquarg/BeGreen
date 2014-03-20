@@ -5,8 +5,20 @@
 angular.module('begreen.controllers', []).
   controller('mes-emissions', ['$scope', 'Emission', function($scope, Emission) {
     $scope.datas = Emission.query();
+    // $scope.index = 1;
+
+    // $scope.itemClicked = function () {
+    //   alert('itemClicked');
+    //   // $scope.index = index;
+    //   console.log('index modifié', index);
+    // };
+    // $scope.alert = function(text) {
+    //   alert(text);
+    // };
+    // console.log($scope.index);
   }])
   .controller('evolution-temps', ['$scope', 'Emission', function($scope, Emission) {
+    // $scope.page = 'analyse';
     $scope.datas = Emission.query();
     $.ajax({
       url: "receiptDetails.json"

@@ -16,7 +16,10 @@ module.exports = ReceiptDetail = americano.getModel('receiptdetail', {
  'ticketId': String,
  'intermarcheShopId': String,
  'timestamp': Date,
- 'isOnlineBuy': Boolean
+ 'isOnlineBuy': Boolean,
+
+ // custom
+ 'emission': String
  });
 
 ReceiptDetail.all = function(callback) {
@@ -41,3 +44,7 @@ ReceiptDetail.withReceiptId = function(receiptIdValue, callback) {
         }
     );
 };
+
+ReceiptDetail.afterInitialize = function () {
+    // body...
+}
