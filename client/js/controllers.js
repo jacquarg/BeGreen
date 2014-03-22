@@ -19,16 +19,17 @@ angular.module('begreen.controllers', []).
   }])
   .controller('evolution-temps', ['$scope', 'Emission', function($scope, Emission) {
     // $scope.page = 'analyse';
-    $scope.datas = Emission.query();
+    // $scope.datas = Emission.query();
     $.ajax({
-      url: "receiptDetails.json"
+      url: "/receiptDetails"
     }).success(function (data) {
       var datas = data;
+      console.log(datas);
       Morris.Line({
         element: 'graph-analyse',
         data: datas,
         xkey: 'timestamp',
-        ykeys: ['family'],
+        ykeys: ['emission'],
         labels: ['Series A', 'Series B']
       });
     })
