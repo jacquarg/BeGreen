@@ -20,5 +20,5 @@ begreenServices.factory('Emission', ['$resource',
   function($resource){
     return $resource('/receiptdetails', {}, {
       query: {method:'GET', params:{}, isArray:true}
-    });
+    })
   }]);

@@ -143,10 +143,12 @@ menu nav .active li {
 ***
 *****************/
 
-aside {
+#aside {
     /*display: block;*/
     border-left: solid 1px #bbbbbb;
     border-right: solid 1px #bbbbbb;
+    padding-left: 0px;
+    padding-right: 0px;
     /*float: left;*/
     /*width: 33%;*/
     /*max-width: 300px;*/
@@ -198,6 +200,10 @@ aside nav a:hover {
 ***
 *****************/
 
+#view {
+    padding: 0px;
+}
+
 section {
     /*display: block;*/
     border-right: solid 1px #bbbbbb;
@@ -208,7 +214,7 @@ section {
 }
 
 #graph-mes-emissions {
-    height: 200px;
+    height: 400px;
     border-bottom: solid 1px #4ab56f;
     margin-bottom: 20px;
 }
@@ -295,7 +301,7 @@ section li div {
     height: 40px;
     border: 2px solid #4ab56f;
     border-radius: 3px;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 #select-periode a {
@@ -343,9 +349,17 @@ section li div {
 
 
 
+/*****************
+***
+*** RESPONSIVE
+***
+*****************/
 
-
-
+@media screen and (max-width: 1200px) {
+  #aside {
+    height: 217px;
+  }
+}
 
 
 

@@ -7,6 +7,10 @@
   <link href='http://fonts.googleapis.com/css?family=Pacifico|Source+Sans+Pro' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/bootstrap.css"/>
   <link rel="stylesheet" href="css/app.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>  <script src="lib/angular/angular.js"></script>
+<!-- <script src="/javascripts/js/highcharts.js" type="text/javascript"></script>  -->
+<script src="highcharts.js" type="text/javascript"></script>
+
 </head>
 <body>
 
@@ -20,24 +24,40 @@
         </div>
       </header>
 
-      <menu id="menu">
+      <menu id="menu" >
         <div class="container">
-          <nav>
-            <a href="#/mes-emissions" ng-click="console.log('click')"><li>Mes émissions</li></a>
-            <a href="#/analyse/evolution-temps" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked('analyse')"><li>Analyse</li></a>
+          <nav ng-controller="menu">
+
+
+
+              <!-- <li ng-repeat="navLink in navLinks" ng-class="navClass('{{navLink.Title}}')"> <a href='#/{{navLink.Title}}'>{{navLink.LinkText}}</a></li> -->
+
+
+            <a href='#/{{navLink.Title}}' ng-repeat="navLink in navLinks" ng-class="navClass('{{navLink.Title}}')"><li>{{navLink.LinkText}}</li></a>
+
+
+
+<!--             <a href="#/analyse/evolution-temps" ng-class="{ 'active': $index == 'evolution-temps' }" ng-click="itemClicked('analyse')"><li>Analyse</li></a>
             <a href="#/objectifs"><li>Objectifs</li></a>
-            <a href="#/conseils"><li>Conseils</li></a>
+            <a href="#/conseils"><li>Conseils</li></a> -->
             <div id="total-mois">
               <p>Total mars 2014</p>
               <p id="total-emissions">73,8 Kg de CO2</p>
             </div>
           </nav>
         </div>
+
+<!--         <div class="well sidebar-nav" ng-app="navList">
+          <ul class="nav nav-list" ng-controller="menu">
+              <li ng-repeat="navLink in navLinks" ng-class="navClass('{{navLink.Title}}')"> <a href='#/{{navLink.Title}}'>{{navLink.LinkText}}</a>
+              </li>
+          </ul>
+      </div> -->
       </menu>
 
       <div class="container">
         <div class="row">
-          <aside class="col-lg-3">
+          <aside class="col-lg-3" id="aside">
             <h1>Données affichées</h1>
             <nav>
               <a class="active" href="#">Achats</a>
@@ -46,14 +66,13 @@
             </nav>
           </aside>
 
-      <div ng-view class="col-lg-9"></div>
+      <div ng-view class="col-lg-9" id="view"></div>
 
         </div>
       </div>
   <!-- In production use: -->
   <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script> -->
 
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>  <script src="lib/angular/angular.js"></script>
   <!-- <script src="lib/jquery/jquery-1.10.2.js"></script> -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>  <script src="lib/morris/morris.min.js"></script>
   <script src="lib/angular/angular.js"></script>
