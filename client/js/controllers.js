@@ -56,51 +56,82 @@ angular.module('begreen.controllers', []).
     for (var i = 0; i < datas.length; i++) {
         var data = datas[i];
         var dataTimestamp = new Date(data.timestamp);
-        // console.log(dataTimestamp);
         var dataMonth = dataTimestamp.getMonth();
-        // console.log('dataMonth : ', dataMonth);
         if (dataMonth == currentMonth) {
             currentMonthDatas.push(data);
-            console.log('pushed :', data)
         };
     };
-    console.log(currentMonthDatas);
     $scope.currentMonthDatas = currentMonthDatas;
+// Use Morris.Area instead of Morris.Line
+$(document).ready(function() {
+  $(window).resize(function() {
+    window.m.redraw();
+  });
+});
 
+function barChart() {
 
-      $('#graph-mes-emissions').highcharts({
-            title: {
-                text: 'Vos émissions de CO2',
-                x: -20 //center
-            },
-            xAxis: {
-                categories: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin',
-                    'Juil', 'A@', 'Sep', 'Oct', 'Nov', 'Dec']
-            },
-            yAxis: {
-                title: {
-                    text: 'Émissions (kg CO2)'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                valueSuffix: 'kg CO2'
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
-            },
-            series: [{
-                name: 'Tokyo',
-                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-            }]
-        });
+  window.m = Morris.Bar({
+
+    element: 'graph-mes-emissions',
+    data: [
+      { y: '0.10', a: 93, b: 50, c: 23, d: 42, e: 10, f: 23 },
+      { y: '0.20', a: 75,  b: 65 },
+      { y: '0.30', a: 50,  b: 40 },
+      { y: '0.40', a: 75,  b: 65 },
+      { y: '0.50', a: 50,  b: 40 },
+      { y: '0.60', a: 75,  b: 65 }
+    ],
+    xkey: 'y',
+    ykeys: ['a', 'b', 'c', 'd', 'e', 'f'],
+    labels: ['C', 'C#', 'C++', 'Java', 'Python 2', 'Python 3'],
+    gridTextColor: '#898992',
+    barColors: ['#4F89DB', '#333A92', '#5D57BA', '#2F1360', '#620F8B', '#872FB0'],
+    stacked: true,
+    hideHover: 'auto',
+    resize: true,
+    redraw: true
+
+  });
+}
+
+  barChart();
+
+// $(window).on('resize', function() { drawGraph();});
+
+      // $('#graph-mes-emissions').highcharts({
+      //       title: {
+      //           text: 'Vos émissions de CO2',
+      //           x: -20 //center
+      //       },
+      //       xAxis: {
+      //           categories: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin',
+      //               'Juil', 'A@', 'Sep', 'Oct', 'Nov', 'Dec']
+      //       },
+      //       yAxis: {
+      //           title: {
+      //               text: 'Émissions (kg CO2)'
+      //           },
+      //           plotLines: [{
+      //               value: 0,
+      //               width: 1,
+      //               color: '#808080'
+      //           }]
+      //       },
+      //       tooltip: {
+      //           valueSuffix: 'kg CO2'
+      //       },
+      //       legend: {
+      //           layout: 'vertical',
+      //           align: 'right',
+      //           verticalAlign: 'middle',
+      //           borderWidth: 0
+      //       },
+      //       series: [{
+      //           name: 'Tokyo',
+      //           data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+      //       }]
+      //   });
     // });
   }])
   .controller('evolution-temps', ['$scope', 'Emission', function($scope, Emission) {
