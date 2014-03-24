@@ -18,7 +18,7 @@ var begreenServices = angular.module('begreen.services', ['ngResource']);
 
 begreenServices.factory('Emission', ['$resource',
   function($resource){
-    return $resource('/receiptdetails', {}, {
-      query: {method:'GET', params:{}, isArray:true}
-    })
+    // return $resource('/receiptdetails', {}, {
+    //   query: {method:'GET', params:{}, isArray:true}
+    // })
   }]);
