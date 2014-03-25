@@ -6,10 +6,10 @@ module.exports.list = function(req, res) {
       res.send(500, "An error has occurred -- " + err);
     }
     else {
-      var totalEmissions = [];
-      for (var i = 0; i < instances.length; i++) {
-        totalEmissions.push(instances[i].emission);
-      };
+      // var totalEmissions = [];
+      // for (var i = 0; i < instances.length; i++) {
+      //   totalEmissions.push(instances[i].emission);
+      // };
       // console.log('totalEmissions : ', totalEmissions);
       res.send(200, instances);
     }
