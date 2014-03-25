@@ -4,12 +4,12 @@
 
   <h1>Dernières sources d'émissions</h1>
   <ul>
-    <li ng-repeat="data in currentMonthDatas | orderBy:'-timestamp'">
+    <li class="clearfix" ng-repeat="data in currentMonthDatas | orderBy:'-timestamp'">
       <div class="date"><p>{{data.timestamp | date:'dd'}}<br/> {{ data.timestamp | date : 'MMM' }}</p></div>
        <div class="content">
         <p class="libelle">{{ data.label }}</p>
         <p class="family">{{ data.familyLabel }}</p>
       </div>
-      <div class="result-line"><p>{{ data.emission }} de CO2</p></div>
+      <div class="result-line"><p>{{ data.emission }} Kg de CO2</p></div>
   </ul>
 </section>
