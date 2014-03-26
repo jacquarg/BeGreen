@@ -183,7 +183,7 @@ aside nav a {
     height: 50px;
     position: relative;
     display: block;
-    padding-left: 30px;
+    padding-left: 20px;
     text-decoration: none;
     color: #aaaaaa;
     vertical-align: middle;
@@ -214,6 +214,35 @@ aside nav a span {
 
 aside nav a:hover {
     background: #f0f0f0;
+}
+
+aside .icon {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+aside .active .icon-basket {
+	width: 17px;
+	height: 12px;
+	background-image: url(../img/icon-basket-active.png);
+}
+
+aside .icon-car {
+	width: 17px;
+	height: 14px;
+	background-image: url(../img/icon-car.png);
+}
+
+aside .icon-house {
+	width: 17px;
+	height: 14px;
+	background-image: url(../img/icon-house.png);
+}
+
+aside .icon-misc {
+	width: 17px;
+	height: 12px;
+	background-image: url(../img/icon-misc.png);
 }
 
 .row {
