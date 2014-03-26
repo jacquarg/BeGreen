@@ -86,23 +86,20 @@ menu {
 }
 
 nav {
-    height: 60px;
+    height: 50px;
 }
 
 menu nav a {
     display: block;
     position: relative;
-    margin-top: 20px;
-    /*bottom: 0;*/
+    margin-top: 10px;
     border-radius: 5px 5px 0 0;
     height: 40px;
     width: 140px;
     list-style: none;
     float: left;
-    margin-left: 10px;
+    margin-right: 10px;
     background: #f0f0f0;
-    /*height: 60px;*/
-    /*vertical-align: bottom;*/
     text-decoration: none;
 }
 
@@ -119,7 +116,7 @@ menu nav a li {
 
 menu nav .active {
     background: #4ab56f;
-
+	font-weight: 600;
 }
 
 menu nav .active li {
@@ -141,12 +138,16 @@ menu nav .active li {
 }
 
 #total-mois p:first-of-type {
-	line-height: 1em;
-	margin-top: 10px;
+	line-height: .9em;
+	font-size: 0.7em;
+	font-weight: 600;
+	margin-top: 9px;
+	text-transform: uppercase;
 }
 
 #total-emissions {
     font-size: 1.3em;
+	font-weight: 700;
 }
 
 /*****************
@@ -357,6 +358,9 @@ section li div {
     height: 40px;
     border: 2px solid #4ab56f;
     border-radius: 3px;
+	font-size: 0.875em;
+	font-weight: 600;
+	letter-spacing: -1px;
 }
 
 #select-periode a {
@@ -430,6 +434,7 @@ section li div {
 		float: none;
 		margin-top: 0;
 		margin-left: 0;
+		border-bottom: 1px solid #fff;
 	}
 	
 	menu nav {
