@@ -22,7 +22,7 @@ a:hover {
     text-decoration: none;
 }
 
-p, h1, h2, h3, span, a {
+p, h1, h2, h3, span, a, input {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -418,9 +418,60 @@ section li div {
 *****************/
 
 
+/*****************
+***
+*** OBJECTIFS
+***
+*****************/
 
+.ajoutObjectif h1 {
+    padding-top: 10px;
+}
 
+.ajoutObjectif form {
+    display: inline-block;
+    width: 100%;
+    margin: auto;
+    padding: 30px;
+}
 
+input[type=text] {
+    color: #8e8e8e;
+    font-size: 1.5em;
+    width : 80%;
+    height: 60px;
+    float: left;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px 0px 0px 5px;
+    padding: 10px;
+}
+
+input[type=submit] {
+    width: 80px;
+    height: 60px;
+    float: left;
+    border-radius: 0px 5px 5px 0px;
+    background: #4ab56f;
+    box-shadow: none;
+    color: #FFF;
+    border: none;
+}
+
+.objectifsMensuels p {
+    padding: 30px;
+    margin-right: 10%;
+    margin-left: 10%;
+    text-align: center;
+    font-size: 1.6em;
+    color: #8e8e8e;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #e7e7e7;
+}
+
+.listingObjectifs .date p {
+    text-align: center;
+    line-height: 45px;
+}
 
 /*****************
 ***

@@ -79,10 +79,8 @@ module.exports.categoriesThisMonth = function(req, res) {
          for (var i = 0; i < categoriesThisMonth.length; i++) {
               if (categoriesThisMonth[i][0] == family) {
                 if (categoriesThisMonth[i][1] === undefined) {
-                  console.log('yes', categoriesThisMonth[i][1]);
                   categoriesThisMonth[i][1] = Number(data.emission);
                 } else {
-                  console.log('no', categoriesThisMonth[i][1]);
                 categoriesThisMonth[i][1] += Number(data.emission);
               }
               }
@@ -236,7 +234,6 @@ module.exports.totalOfMounth = function(req, res) {
         var month = data.month;
         var year = data.timestamp.getFullYear();
         var dataPeriod = year+'-'+month;
-        console.log(totalEmission);
         if (currentPeriod == dataPeriod) {
           totalEmission += Number(data.emission);
         };
@@ -255,7 +252,6 @@ module.exports.totalForThisMonth = function(req, res) {
     }
     else {
       var currentPeriod = req.params.date;
-      console.log(currentPeriod);
 
       totalEmission = 0;
       for (var i = 0; i < instances.length; i++) {

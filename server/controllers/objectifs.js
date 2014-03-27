@@ -82,7 +82,7 @@ module.exports.findLatest = function(req, res) {
       		res.send(200, objectif);
     	}
       	else{
-      		res.send(200, [{id:'',kg:0}]);
+      		res.send(200, [{id:'',kg:null}]);
       	}
     }
   });
