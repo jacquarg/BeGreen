@@ -15,6 +15,10 @@ module.exports = {
    //      get: ReceiptDetails.groupByMonth
    //  },
 
+   'totalForThisMonth/:date': {
+        get: ReceiptDetails.totalForThisMonth
+    },
+
    'lastMonths': {
         get: ReceiptDetails.lastMonths
     },

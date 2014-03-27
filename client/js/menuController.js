@@ -11,7 +11,7 @@ begreen.controller('menu', ['$scope', '$location', 'Emission', function($scope, 
     }];
     $scope.navClass = function (page) {
         var currentRoute = $location.path().substring(1) || 'home';
-        return page === currentRoute ? 'active' : '';
+        return page == currentRoute ? 'active' : '';
     };
 
 }]);
