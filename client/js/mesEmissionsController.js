@@ -1,7 +1,5 @@
 begreen.controller('mes-emissions', ['$scope', '$location', 'Emission', function($scope, $location, Emission) {
 
-      $scope.currentMonthDatas = Emission.query();
-
       function addMonths(date, months) {
         date.setMonth(date.getMonth() + months);
         return date;

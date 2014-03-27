@@ -31,6 +31,10 @@ module.exports = {
         get: ReceiptDetails.withReceiptId
     },
 
+    'totalOfMounth': {
+        get: ReceiptDetails.totalOfMounth
+    },
+
     'objectifs': {
     	get: Objectifs.list
     },

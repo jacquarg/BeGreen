@@ -219,3 +219,31 @@ module.exports.withReceiptId = function(req, res) {
     });
 };
 
+module.exports.totalOfMounth = function(req, res) {
+  ReceiptDetail.all(function(err, instances) {
+    if(err != null) {
+      res.send(500, "An error has occurred -- " + err);
+    }
+    else {
+     var date = new Date();
+      var currentMonth = date.getMonth();
+      var currentYear = date.getFullYear();
+      var currentPeriod = currentYear+'-'+currentMonth;
+
+      totalEmission = 0;
+      for (var i = 0; i < instances.length; i++) {
+        var data = instances[i];
+        var month = data.month;
+        var year = data.timestamp.getFullYear();
+        var dataPeriod = year+'-'+month;
+        console.log(totalEmission);
+        if (currentPeriod == dataPeriod) {
+          totalEmission += Number(data.emission);
+        };
+      };
+      var totalArray = [];
+      totalArray.push(totalEmission)
+      res.send(200, totalArray);
+    }
+  });
+};
