@@ -12,9 +12,9 @@ Objectif.all = function(callback) {
         {
             'limit': 6
         },
-        function(err, instances) {
+        function allObjectifsFound(err, instances) {
             if(!err){
-                console.log('[OK] Objectif found');
+                console.log('[OK] Objectifs found');
                 callback(null, instances);
             }else{
                 console.log('[ERR] No objectif found');
@@ -47,13 +47,23 @@ Objectif.findLatest = function(callback) {
     Objectif.request(
         "all",
         {
-            'descending': true,
+            'descending': false,
             'limit': 1
         },
         function objectifFound(err, instance) {
             if(!err){
-                console.log('[OK] Found one objectif');
-                callback(null, instance);
+                if(instance.length > 0){
+                    console.log('[OK] Last objectif found');
+                    var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                    var diffDays = Math.round(Math.abs((new Date().getTime() - new Date(instance[0].month).getTime())/(oneDay)));
+                    if(diffDays<30){
+                        callback(null, instance);
+                    }else{
+                        callback(null, null);
+                    }
+                }else{
+                    callback(null, null);
+                }
             }else{
                 console.log('[ERR] Finding one objectif');
                 callback(err);
@@ -67,7 +77,7 @@ Objectif.add = function(data, callback){
         month: data.month,
         kg: data.kg,
         status: 1
-    }, function(err, created){
+    }, function objAdded(err, created){
         if(!err){
             console.log('[OK] Objectif saved');
             callback(null, created);
@@ -79,18 +89,35 @@ Objectif.add = function(data, callback){
 }
 
 Objectif.updateObj = function(params, callback){
-    Objectif.find(params.id, function(err, objectif) {
-        if(!err){
-            objectif.kg = params.kg;
-            objectif.save(function(err) {
-                console.log('[OK] Objectif updated');
+    if(params.id!=null){
+        Objectif.find(params.id, function objFound(err, objectif) {
+            if(!err){
+                objectif.kg = params.kg;
+                objectif.save(function(err) {
+                    console.log('[OK] Objectif updated');
+                    callback(null, objectif);
+                });    
+            }else{
+                console.log('[ERR] Failed updating objectif');
+                callback(err);
+            }
+        });
+    }else{
+        console.log('Param id non existant');
+        Objectif.create({
+            month: new Date().getTime(),
+            kg: params.kg,
+            status: 1
+        }, function objCreated(err, objectif){
+            if(!err){
+                console.log('[OK] New objectif added');
                 callback(null, objectif);
-            });    
-        }else{
-            console.log('[ERR] Failed updating objectif');
-            callback(null, objectif);
-        }
-    });
+            }else{
+                console.log('[ERR] Failed saving objectif');
+                callback(err);
+            }
+        });
+    }
 }
 
 Objectif.deleteAll = function(callback){

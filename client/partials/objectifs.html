@@ -1,24 +1,26 @@
-<section ng-controller="objectifs">
+<section>
 	<div class="ajoutObjectif">
-		<h2>Modifier l'objectif du mois</h2><hr>
-		<form name="ajoutObjectif" method="POST">
+		<h1>Modifier l'objectif du mois</h1>
+		<form name="ajoutObjectif">
 			<input type="text" name="objectifInput" ng-model="objectif.kg" ng-pattern="/^[\d]{1,4}$/"/>
-			<label for="objectifInput">KG de CO2</label><br />
-			<input type="button" class="btnAjoutObjectif" name="btnAjoutObjectif" value="Valider"/>
-		</form>
+			<label for="objectifInput">Kg de CO2</label><br />
+			<input type="button" class="btnUpdateObj addObj" data-id="{{objectif.id}}" value="Valider"/>
+		</form><hr />
 	</div>
 	<div class="objectifsMensuels">
-		<h2>Objectif actuel</h2><hr>
-		<div>{{objectif.kg}}</div>
+		<h1>Objectif actuel</h1>
+		<div>{{objectif.kg}} Kg de CO2</div><hr />
 	</div>
 	<div>
-		<h2>Liste des objectifs passés</h2><hr>
-		<div ng-repeat="obj in objs | orderBy:'-month'">
-			<div><p>{{obj.month | date:'dd'}}<br/> {{obj.month | date : 'MMM'}}</p></div>
-			<div>
-				<p>{{obj.kg}} Kg de CO2</p>
-				<p>{{obj.status}}</p>
-			</div>
-		<div>
+		<h1>Liste des objectifs passés</h1>
+		<ul>
+		    <li class="clearfix" ng-repeat="obj in objs | orderBy:'-month'">
+				<div class="date"><p>{{obj.month | date:'dd'}}<br/> {{obj.month | date : 'MMM'}}</p></div>
+				<div class="content">
+					<p class="libelle">{{obj.kg}} Kg de CO2</p>
+					<p class="family">{{obj.status}}</p>
+				</div>
+		    </li>
+		</ul>
 	</div>
 </section>

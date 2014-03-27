@@ -17,18 +17,23 @@ begreen.controller('objectifs', ['$scope', '$location', 'Emission', function($sc
 	    });
 	});
 
-	$('.btnAjoutObjectif').on('click', function(e){
-		e.preventDefault();
-		loadResource('/objectifs/update', function(data){
-
-		}, datas, 'get')
+	$('.addObj').unbind('click').on('click', function(){
+		var datas = {
+			id: $scope.objectif.id,
+			kg: $scope.objectif.kg
+		}
+		loadResource('/objectifs/update', function(data){}, datas, 'get');
 	});
 
 }]);
 
 function loadResource(askedUrl, callback, data, method){
+	data = typeof data !== 'undefined' ? data : null;
+	method = typeof method !== 'undefined' ? method : 'get';
 	$.ajax({
-		url: askedUrl
+		url: askedUrl,
+		data: data,
+		method: method
 	}).done(function objectifsGrabbed(data){
 		callback(data);
 	});

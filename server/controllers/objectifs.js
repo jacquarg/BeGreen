@@ -37,7 +37,7 @@ module.exports.add = function(req, res) {
 
 module.exports.updateObj = function(req, res) {
 	var data = {
-		id: req.param('id'),
+		id: req.param('id')!='' ? req.param('id') : null,
 		kg: req.param('kg')
 	};
 	Objectif.updateObj(data, function(err, objectif) {
@@ -78,7 +78,12 @@ module.exports.findLatest = function(req, res) {
       res.send(500, "An error has occurred -- " + err);
     }
     else {
-      res.send(200, objectif);
+    	if(objectif!=null){
+      		res.send(200, objectif);
+    	}
+      	else{
+      		res.send(200, [{id:'',kg:0}]);
+      	}
     }
   });
 };
