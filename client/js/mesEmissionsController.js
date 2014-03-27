@@ -1,75 +1,72 @@
 begreen.controller('mes-emissions', ['$scope', '$location', 'Emission', function($scope, $location, Emission) {
 
+      $scope.currentMonthDatas = Emission.query();
 
-// Use Morris.Area instead of Morris.Line
-$(document).ready(function() {
-  $(window).resize(function() {
-    window.m.redraw();
-  });
-});
+      function addMonths(date, months) {
+        date.setMonth(date.getMonth() + months);
+        return date;
+      }
 
-function barChart() {
-  // var year_data = [
-  //   {"period": "2012", "licensed": 3407, "sorned": 660},
-  //   {"period": "2011", "licensed": 3351, "sorned": 629},
-  //   {"period": "2010", "licensed": 3269, "sorned": 618},
-  //   {"period": "2009", "licensed": 3246, "sorned": 661},
-  //   {"period": "2008", "licensed": 3257, "sorned": 667},
-  //   {"period": "2007", "licensed": 3248, "sorned": 627},
-  //   {"period": "2006", "licensed": 3171, "sorned": 660},
-  //   {"period": "2005", "licensed": 3171, "sorned": 676},
-  //   {"period": "2004", "licensed": 3201, "sorned": 656},
-  //   {"period": "2003", "licensed": 3215, "sorned": 622}
-  // ];
-  console.log('scoooope.datas', $scope.datas);
-  window.m = Morris.Line({
+      var maDate = addMonths(new Date(), -5); // six months before now
+      var dateArray = [];
+      var date;
+      for (var i = 0; i < 6; i++) {
+        var index = maDate.getMonth();
+        dateArray.push(index);
+        maDate.setMonth(maDate.getMonth() + 1);
+      };
+      var month = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+      var dateFormatedArray = [];
+      for (var i = 0; i < dateArray.length; i++) {
+        var index = dateArray[i];
+        dateFormatedArray.push(month[index]);
+      };
+      $.ajax({
+          url: "/lastMonths"
+        }).success(function (data) {
+        $('#graph-mes-emissions').highcharts({
+            title: {
+                text: '',
+                x: -20 //center
+            },
+            subtitle: {
+                text: '',
+                x: -20
+            },
+            xAxis: {
+                categories: dateFormatedArray
+            },
+            yAxis: {
+                title: {
+                    text: 'Émissions de CO2 (kg CO2)',
+                    style: {
+                        color: '#4ab56f',
+                        fontWeight: 'bold'
+                      }
+                },
 
-
-  // Morris.Line({
-    element: 'graph-mes-emissions',
-    data: $scope.datas,
-    xkey: 'timestamp',
-    ykeys: ['emission'],
-    labels: ['emission']
-  });
-}
-
-  barChart();
-
-// $(window).on('resize', function() { drawGraph();});
-
-      // $('#graph-mes-emissions').highcharts({
-      //       title: {
-      //           text: 'Vos émissions de CO2',
-      //           x: -20 //center
-      //       },
-      //       xAxis: {
-      //           categories: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin',
-      //               'Juil', 'A@', 'Sep', 'Oct', 'Nov', 'Dec']
-      //       },
-      //       yAxis: {
-      //           title: {
-      //               text: 'Émissions (kg CO2)'
-      //           },
-      //           plotLines: [{
-      //               value: 0,
-      //               width: 1,
-      //               color: '#808080'
-      //           }]
-      //       },
-      //       tooltip: {
-      //           valueSuffix: 'kg CO2'
-      //       },
-      //       legend: {
-      //           layout: 'vertical',
-      //           align: 'right',
-      //           verticalAlign: 'middle',
-      //           borderWidth: 0
-      //       },
-      //       series: [{
-      //           name: 'Tokyo',
-      //           data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-      //       }]
-      //   });
-    // });
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#4ab56f'
+                }]
+            },
+            tooltip: {
+                valueSuffix: 'kg CO2'
+            },
+            colors: [
+              '#4ab56f'
+            ],
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Émissions de CO2',
+                data: data
+            }]
+        });
+      });
   }]);

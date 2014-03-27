@@ -10,8 +10,23 @@ module.exports = {
         get: ReceiptDetails.list
     },
 
+   // 'groupByMonth': {
+   //      get: ReceiptDetails.groupByMonth
+   //  },
+
+   'lastMonths': {
+        get: ReceiptDetails.lastMonths
+    },
+
+   'currentMonthDatas': {
+        get: ReceiptDetails.currentMonthDatas
+    },
+
+   'categoriesThisMonth': {
+        get: ReceiptDetails.categoriesThisMonth
+    },
+
     'receiptdetails/:receiptid': {
         get: ReceiptDetails.withReceiptId
       },
 };
-

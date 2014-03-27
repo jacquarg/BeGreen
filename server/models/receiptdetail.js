@@ -21,7 +21,8 @@ module.exports = ReceiptDetail = americano.getModel('receiptdetail', {
  'isOnlineBuy': Boolean,
 
  // custom
- 'emission': String
+ 'emission': String,
+ 'month': Number
  });
 
 ReceiptDetail.all = function(callback) {
@@ -50,4 +51,16 @@ ReceiptDetail.withReceiptId = function(receiptIdValue, callback) {
 ReceiptDetail.afterInitialize = function () {
     var family = 'a'+this.family;
     this.emission = baseCarbone[family].empreinteCarbone;
+
+    var date = new Date (this.timestamp);
+    this.month = date.getMonth();
 }
+
+
+
+
+
+
+
+
+
