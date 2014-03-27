@@ -1,0 +1,24 @@
+<section ng-controller="objectifs">
+	<div class="ajoutObjectif">
+		<h2>Modifier l'objectif du mois</h2><hr>
+		<form name="ajoutObjectif" method="POST">
+			<input type="text" name="objectifInput" ng-model="objectif.kg" ng-pattern="/^[\d]{1,4}$/"/>
+			<label for="objectifInput">KG de CO2</label><br />
+			<input type="button" class="btnAjoutObjectif" name="btnAjoutObjectif" value="Valider"/>
+		</form>
+	</div>
+	<div class="objectifsMensuels">
+		<h2>Objectif actuel</h2><hr>
+		<div>{{objectif.kg}}</div>
+	</div>
+	<div>
+		<h2>Liste des objectifs passés</h2><hr>
+		<div ng-repeat="obj in objs | orderBy:'-month'">
+			<div><p>{{obj.month | date:'dd'}}<br/> {{obj.month | date : 'MMM'}}</p></div>
+			<div>
+				<p>{{obj.kg}} Kg de CO2</p>
+				<p>{{obj.status}}</p>
+			</div>
+		<div>
+	</div>
+</section>

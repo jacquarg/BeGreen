@@ -6,7 +6,7 @@ begreen.controller('menu', ['$scope', '$location', 'Emission', function($scope, 
         Title: 'analyse/evolution-temps',
         LinkText: 'Analyse'
     }, {
-        Title: 'objectifs',
+        Title: 'analyse/objectifs',
         LinkText: 'Objectifs'
     }, {
         Title: 'conseils',
