@@ -7,5 +7,9 @@ americano = require('americano');
 module.exports = {
     receiptdetail: {
         all: americano.defaultRequests.all
+    },
+
+    objectif: {
+    	all: americano.defaultRequests.all	
     }
 };

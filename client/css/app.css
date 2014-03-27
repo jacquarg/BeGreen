@@ -9,6 +9,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 body {
     /*background: #222;*/
+	-webkit-font-smoothing : antialiased;
 }
 
 /*.container {
@@ -25,6 +26,10 @@ p, h1, h2, h3, span, a {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.container.clearfix {
+	position: relative;
+}
+
 /*****************
 ***
 *** HEADER
@@ -35,10 +40,12 @@ header {
     width: 100%;
     background: #4ab56f;
     height: 60px;
+	box-shadow: 0 0 2px #CCC;
+	border-bottom: 1px solid #42a866;
 }
 
 #logo-begreen {
-    height: 40px;
+    height: 50px;
     width: 40px;
     padding-top: 10px;
     float: left;
@@ -49,7 +56,7 @@ header h1 {
     font-family: 'Pacifico', cursive, sans-serif;
     color: #FFF;
     vertical-align: middle;
-    font-size: 2em;
+    font-size: 1.5em;
     line-height: 60px;
 }
 
@@ -79,23 +86,20 @@ menu {
 }
 
 nav {
-    height: 60px;
+    height: 50px;
 }
 
 menu nav a {
     display: block;
     position: relative;
-    margin-top: 20px;
-    /*bottom: 0;*/
+    margin-top: 10px;
     border-radius: 5px 5px 0 0;
     height: 40px;
     width: 140px;
     list-style: none;
     float: left;
-    margin-left: 10px;
+    margin-right: 10px;
     background: #f0f0f0;
-    /*height: 60px;*/
-    /*vertical-align: bottom;*/
     text-decoration: none;
 }
 
@@ -103,7 +107,7 @@ menu nav a li {
     display: block;
     text-align: center;
     vertical-align: middle;
-    padding-top: 15px;
+    padding-top: 13px;
     text-decoration: none;
     /*margin-top: 20px;*/
     color: #4ab56f;
@@ -112,7 +116,7 @@ menu nav a li {
 
 menu nav .active {
     background: #4ab56f;
-
+	font-weight: 600;
 }
 
 menu nav .active li {
@@ -133,8 +137,17 @@ menu nav .active li {
     color: #4ab56f;
 }
 
+#total-mois p:first-of-type {
+	line-height: .9em;
+	font-size: 0.7em;
+	font-weight: 600;
+	margin-top: 9px;
+	text-transform: uppercase;
+}
+
 #total-emissions {
     font-size: 1.3em;
+	font-weight: 700;
 }
 
 /*****************
@@ -144,16 +157,16 @@ menu nav .active li {
 *****************/
 
 #aside {
+	height:100%;
     /*display: block;*/
     border-left: solid 1px #bbbbbb;
-    border-right: solid 1px #bbbbbb;
     padding-left: 0px;
     padding-right: 0px;
     /*float: left;*/
     /*width: 33%;*/
     /*max-width: 300px;*/
-    height: 100%;
     background: #e4e4e4;
+	position: absolute;
 }
 
 aside h1 {
@@ -171,11 +184,21 @@ aside nav a {
     height: 50px;
     position: relative;
     display: block;
-    padding-left: 30px;
+    padding-left: 20px;
     text-decoration: none;
     color: #aaaaaa;
     vertical-align: middle;
     line-height: 50px;
+	border-bottom: 1px solid #F0F0F0;
+}
+
+aside nav a.active {
+	background-color: #F0F0F0;
+	color: #39774e;
+}
+
+aside nav a.soon:hover {
+	cursor: not-allowed;
 }
 
 a:hover {
@@ -194,6 +217,39 @@ aside nav a:hover {
     background: #f0f0f0;
 }
 
+aside .icon {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+aside .active .icon-basket {
+	width: 17px;
+	height: 12px;
+	background-image: url(../img/icon-basket-active.png);
+}
+
+aside .icon-car {
+	width: 17px;
+	height: 14px;
+	background-image: url(../img/icon-car.png);
+}
+
+aside .icon-house {
+	width: 17px;
+	height: 14px;
+	background-image: url(../img/icon-house.png);
+}
+
+aside .icon-misc {
+	width: 17px;
+	height: 12px;
+	background-image: url(../img/icon-misc.png);
+}
+
+.row {
+	overflow: hidden;
+}
+
 /*****************
 ***
 *** SECTION
@@ -207,6 +263,8 @@ aside nav a:hover {
 section {
     /*display: block;*/
     border-right: solid 1px #bbbbbb;
+	border-left: 1px solid #bbb;
+	padding-top: 50px;
     /*float: left;*/
     /*width: 74%;*/
     /*max-width: 900px;*/
@@ -230,7 +288,6 @@ section h1 {
 
 section li {
     border-top: 1px solid #bbbbbb;
-    height: 50px;
 }
 
 /*****************
@@ -301,7 +358,9 @@ section li div {
     height: 40px;
     border: 2px solid #4ab56f;
     border-radius: 3px;
-    margin-top: 50px;
+	font-size: 0.875em;
+	font-weight: 600;
+	letter-spacing: -1px;
 }
 
 #select-periode a {
@@ -324,6 +383,11 @@ section li div {
     color: #FFF;
 }
 
+.clearfix:after {
+	content:"";
+	display:block;
+	clear:both;
+}
 
 /*****************
 ***
@@ -355,10 +419,41 @@ section li div {
 ***
 *****************/
 
-@media screen and (max-width: 1200px) {
-  #aside {
-    height: 217px;
+@media screen and (min-width: 768px) {
+
+  #view {
+  		margin-left: 25%;
   }
+}
+
+@media screen and (max-width: 992px) {
+	menu nav a {
+		width: 100%;
+		border-radius: 0;
+		display: inline-block;
+		float: none;
+		margin-top: 0;
+		margin-left: 0;
+		border-bottom: 1px solid #fff;
+	}
+	
+	menu nav {
+		text-align: center;
+		height: auto;
+		padding: 10px 0;
+	}
+	
+	#total-mois {
+		width: 100%;
+		float: none;
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#aside {
+		display: none;
+	}
 }
 
 
