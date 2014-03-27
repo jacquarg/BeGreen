@@ -13,7 +13,6 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 			var promise = getStatus(d);
 			promise.then(function(status){
 				d.status = status;
-				console.log('Status : '+d.status);
 			});
 		});
 		$scope.$apply(function(){
@@ -53,7 +52,6 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 		var year = new Date(objectif.month).getFullYear();
 		var formatedDate = year+'-'+month;
 		loadResource('totalForThisMonth/'+formatedDate, function(conso){
-			console.log('Théorique : '+objectif.kg+' - Effectif : '+Math.floor(conso[0], 2));
 			deferred.resolve(compare(objectif.kg, Math.floor(conso[0])));
 		});
 		return deferred.promise;
@@ -66,7 +64,6 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 		var percent;
 		if(eMinR > 0){			// Better than expected
 			percent = 100*estimation/reality;
-			console.log(percent);
 			if(percent < 5) deferred.resolve('Pas mal');
 			else if(percent < 100) deferred.resolve('Vraiment Bien !');
 			else if(percent < 120) deferred.resolve('Excellent !');
@@ -74,7 +71,6 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 			else deferred.resolve('Quelle légende, bravo !');
 		}else if(eMinR < 0){	// Worst tha expected
 			percent = Math.abs(100*estimation/reality);
-			console.log(percent);
 			if(percent < 20) deferred.resolve('Lamentable...');
 			else if(percent < 40) deferred.resolve('Catastrophique');
 			else if(percent < 60) deferred.resolve('A changer rapidement !');
