@@ -275,6 +275,7 @@ section {
     height: 400px;
     border-bottom: solid 1px #4ab56f;
     margin-bottom: 20px;
+    width: 99%;
 }
 
 section h1 {
@@ -399,7 +400,7 @@ section li div {
     height: 400px;
     border-bottom: solid 1px #4ab56f;
     margin-bottom: 20px;
-    width: 100%;
+    width: 99%;
 }
 
 /*****************
@@ -436,13 +437,13 @@ section li div {
 		margin-left: 0;
 		border-bottom: 1px solid #fff;
 	}
-	
+
 	menu nav {
 		text-align: center;
 		height: auto;
 		padding: 10px 0;
 	}
-	
+
 	#total-mois {
 		width: 100%;
 		float: none;
