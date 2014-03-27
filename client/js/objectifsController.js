@@ -9,7 +9,6 @@ begreen.controller('objectifs', ['$scope', '$location', 'Emission', function($sc
 	});
 
 	loadResource('/objectifs', function(data){
-		console.log(data);
 		$.each(data, function(i, d){
 			d.status = getStatus(d.status);
 		});
