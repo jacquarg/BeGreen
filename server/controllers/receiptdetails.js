@@ -152,9 +152,9 @@ module.exports.lastMonths = function(req, res) {
         var index = findDate(fullDate);
         if (index != -1) {
           if (lastMonthsDatas[index]) {
-            lastMonthsDatas[index] += Number(data.emission);
+            lastMonthsDatas[index] += Number(data.emission) / 1000;
           } else {
-            lastMonthsDatas[index] = Number(data.emission);
+            lastMonthsDatas[index] = Number(data.emission) / 1000;
           }
         }
       };
@@ -247,3 +247,33 @@ module.exports.totalOfMounth = function(req, res) {
     }
   });
 };
+
+module.exports.totalForThisMonth = function(req, res) {
+  ReceiptDetail.all(function(err, instances) {
+    if(err != null) {
+      res.send(500, "An error has occurred -- " + err);
+    }
+    else {
+      var currentPeriod = req.params.date;
+      console.log(currentPeriod);
+
+      totalEmission = 0;
+      for (var i = 0; i < instances.length; i++) {
+        var data = instances[i];
+        var month = data.month;
+        var year = data.timestamp.getFullYear();
+        var dataPeriod = year+'-'+month;
+        if (currentPeriod == dataPeriod) {
+          var value = Number(data.emission) / 1000;
+          var roundedValue = value.toFixed(2);
+          totalEmission +=  Number(roundedValue);
+        };
+      };
+      var totalArray = [];
+      totalArray.push(totalEmission)
+      res.send(200, totalArray);
+    }
+  });
+};
+
+

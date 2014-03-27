@@ -10,3 +10,10 @@ begreenServices.factory('Emission', ['$resource',
       query: {method:'GET', params:{}, isArray:true}
     })
   }]);
+
+begreenServices.factory('TotalEmission', ['$resource',
+  function($resource){
+    return $resource('totalOfMounth', {}, {
+      query: {method:'GET', params:{}, isArray:true}
+    })
+  }]);
