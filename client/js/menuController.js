@@ -8,9 +8,6 @@ begreen.controller('menu', ['$scope', '$location', 'Emission', function($scope, 
     }, {
         Title: 'analyse/objectifs',
         LinkText: 'Objectifs'
-    }, {
-        Title: 'conseils',
-        LinkText: 'Conseils'
     }];
     $scope.navClass = function (page) {
         var currentRoute = $location.path().substring(1) || 'home';

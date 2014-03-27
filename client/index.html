@@ -29,6 +29,7 @@
         <div class="container">
           <nav ng-controller="menu">
             <a href='#/{{navLink.Title}}' ng-repeat="navLink in navLinks" ng-class="navClass('{{navLink.Title}}')"><li>{{navLink.LinkText}}</li></a>
+            <a href='#/conseils'><li>Conseils</li></a>
             <div id="total-mois">
               <p>Total {{ dateNow | date: 'MMM' }} 2014</p>
               <p id="total-emissions">{{ totalEmission }} Kg de CO2</p>
