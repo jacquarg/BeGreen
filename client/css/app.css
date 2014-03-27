@@ -197,8 +197,12 @@ aside nav a.active {
 	color: #39774e;
 }
 
-aside nav a.soon:hover {
+.soon:hover {
 	cursor: not-allowed;
+}
+
+menu nav a.soon li {
+	color: #ccc;
 }
 
 a:hover {
