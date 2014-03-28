@@ -11,53 +11,6 @@ module.exports.list = function(req, res) {
   });
 };
 
-// module.exports.groupByMonth = function(req, res) {
-//   ReceiptDetail.all(function(err, instances) {
-//     if(err != null) {
-//       res.send(500, "An error has occurred -- " + err);
-//     }
-//     else {
-//       var dataByMonth = {};
-//       var entries = [];
-//       for (var i = 0; i < instances.length; i++) {
-//         var data = instances[i];
-//         var date = new Date (data.timestamp);
-//         var key = date.getFullYear() + '-' + date.getMonth();
-//         if (dataByMonth[key] === undefined) {
-//           dataByMonth[key] = [];
-//           dataByMonth[key].push(data);
-//           entries.push(key);
-//         } else {
-//         dataByMonth[key].push(data);
-//         }
-//       };
-
-//       function groupDatas (datasOfMounth) {
-//         for (var i = 0; i < datasOfMounth.length; i++) {
-//           var data = datasOfMounth[i];
-//           if (classifiedByMonth[key] === undefined) {
-//             classifiedByMonth[key] = {};
-//             classifiedByMonth[key].total = new Number(data.emission);
-//           };
-//           // console.log(data.emission);
-//           classifiedByMonth[key].total += new Number(data.emission);
-//         };
-//       }
-
-//       var classifiedByMonth = {};
-//       // console.log(entries.length);
-//       for (var i = 0; i < entries.length; i++) {
-//         var key = entries[i];
-//         var datasOfMounth = dataByMonth[key];
-//         groupDatas(datasOfMounth)
-//       };
-//       // classifiedByMonth
-//       // console.log(classifiedByMonth);
-//       res.send(200, classifiedByMonth);
-//     }
-//   });
-// };
-
 module.exports.categoriesThisMonth = function(req, res) {
   ReceiptDetail.all(function(err, instances) {
     if(err != null) {
@@ -295,39 +248,47 @@ module.exports.lastMonthsCategories = function(req, res) {
         dateArray.push(fullDate);
         maDate.setMonth(maDate.getMonth() + 1);
       };
-      // console.log(dateArray);
+      console.log(dateArray);
+
+      var lastMonthsCategories = [];
+
 
       function findSameCategory () {
-        var result = false
-        console.log(lastMonthsCategories[0]);
+        var result = false;
         for (var i = 0; i < lastMonthsCategories.length; i++) {
           var data = lastMonthsCategories[i];
-          // console.log(section);
-          // console.log(data.name);
           if (data.name == section) {
-            // console.log(section);
-            result = true;
-          } else {
-            // console.log('notFound');
+            result = i;
           }
         };
         return result;
       }
 
-
-      var lastMonthsCategories = ['CREMERIE'];
       for (var i = 0; i < instances.length; i++) {
         var data = instances[i];
         var section = data.sectionLabel;
-        findSameCategory();
-        var toAdd = {
-          name: section,
-          data: []
+        console.log(section);
+        var indexForLastMonthsCategories = findSameCategory();
+        if (indexForLastMonthsCategories === false) {
+          var toAdd = {
+            name: section,
+            data: [0,0,3,3,3,0]
+          }
+          lastMonthsCategories.push(toAdd);
         }
-        // lastMonthsCategories.push(toAdd);
+        var month = data.month;
+        var timestamp = data.timestamp;
+        var year = timestamp.getFullYear();
+        var period = year+'-'+month;
+        var index = dateArray.indexOf(period);
+        if (index != -1) {
+          var toPut = lastMonthsCategories[indexForLastMonthsCategories].data[index];
+
+          toPut += data.emission;
+          console.log(toPut);
+        };
       };
-      // var data = lastMonthsCategories[2];
-      // console.log(data.name);
+      console.log(lastMonthsCategories);
 
       res.send(200, lastMonthsCategories);
     }

@@ -11,10 +11,6 @@ module.exports = {
         get: ReceiptDetails.list
     },
 
-   // 'groupByMonth': {
-   //      get: ReceiptDetails.groupByMonth
-   //  },
-
    'totalForThisMonth/:date': {
         get: ReceiptDetails.totalForThisMonth
     },
@@ -69,6 +65,6 @@ module.exports = {
 
     'objectifs/getAll': {
         get: Objectifs.getAll
-    }    
+    }
 
 };
