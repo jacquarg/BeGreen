@@ -449,6 +449,11 @@ section li div {
     opacity: 0;
 }
 
+.percent{
+    font-style: italic;
+    color: #4ab56f;
+}
+
 input[type=text] {
     color: #8e8e8e;
     font-size: 1.5em;

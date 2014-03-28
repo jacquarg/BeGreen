@@ -2,14 +2,18 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 	$scope.objectif = [];
 	$scope.objs = [];
 
+	//Go grab the latest objectif, if it exists
 	loadResource('objectifs/findLatest', function(data){
 		$scope.$apply(function(){
-			console.log('latest:');
-			console.log(data);
-	        $scope.objectif = data[0];
+			setTimeout(function(){
+		        $scope.objectif = data[0];
+		        $scope.currentConsumption = $scope.$parent.totalEmission;
+		        $scope.percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
+		    }, 500);
 	    });
 	});
 
+	//Go grab all the objectifs
 	loadResource('objectifs', function(data){
 		$.each(data, function(i, d){
 			var promise = getStatus(d);
@@ -18,10 +22,8 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 			});
 		});
 		$scope.$apply(function(){
-			if(data.length>0)
-	        	$scope.objs = data;
-	        else
-	        	$('.noObjs').removeClass('noObjsHidden');
+			if(data.length>0) $scope.objs = data;
+	        else $('.noObjs').removeClass('noObjsHidden');
 	    });
 	});
 
@@ -35,9 +37,16 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 			//Updates all the previous objectifs
 			loadResource('objectifs/update', function(){
 				$('.ok').removeClass('okInvisible');
+				$scope.$apply(function(){
+			        $scope.percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
+			    });
 			}, datas, 'get');
 		}
 	});
+
+	function getPercent(val1, val2){
+		return Math.floor(100*parseFloat(val1)/parseFloat(val2), 2);
+	}
 
 	// Sends an ajax request according to the parameters,
 	// then executes the given callback
