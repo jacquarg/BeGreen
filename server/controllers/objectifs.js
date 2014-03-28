@@ -59,7 +59,7 @@ module.exports.updateObj = function(req, res) {
 			res.send(500, "An error has occurred -- " + err);
 		}
 		else {
-			res.send(200, 'Objectif updated');
+			res.send(200, objectif);
 		}
 	});
 };

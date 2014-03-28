@@ -2,7 +2,7 @@
 	<div class="ajoutObjectif">
 		<h1>Modifier l'objectif du mois :</h1>
 		<form name="ajoutObjectif">
-			<input placeholder="Objectif en Kg de CO2" type="text" name="objectifInput" ng-model="objectif.kg" ng-pattern="/^[\d]{1,4}$/"/>
+			<input placeholder="Objectif en Kg de CO2" type="text" name="objectifInput" ng-model="objectif.kg" ng-pattern="/^[\d]{1,4}$/" ng-change="updatePercent()"/>
 			<input type="submit" class="btnUpdateObj addObj" data-id="{{objectif.id}}" value="Valider"/>
 			<img src="img/ok.png" alt="OK" class="ok okInvisible"/>
 		</form><hr />
