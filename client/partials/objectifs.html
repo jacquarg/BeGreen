@@ -7,9 +7,9 @@
 			<img src="img/ok.png" alt="OK" class="ok okInvisible"/>
 		</form><hr />
 	</div>
-	<div class="objectifsMensuels">
+	<div class="objectifsMensuels" ng-change="clear()">
 		<h1>Objectif actuel :</h1>
-		<p>{{objectif.kg}} Kg de CO2 <span class="percent">{{percent}}</span></p><br/>
+		<p>{{objectif.kg}}{{libelle}} <span class="percent">{{percent}}</span></p><br/>
 	</div>
 	<div>
 		<h1>Liste des objectifs des six derniers mois :</h1>

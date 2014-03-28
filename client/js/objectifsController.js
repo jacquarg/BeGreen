@@ -10,7 +10,7 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 		        $scope.currentConsumption = $scope.$parent.totalEmission;
 		        $scope.percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
 		      	$scope.percent = !isNaN($scope.percent) ? '('+$scope.percent+'%)' : '';
-		      	console.log($scope.percent);
+		      	$scope.libelle = $scope.objectif.kg!=null ? ' Kg de CO2' : ' - ';
 		    }, 500);
 	    });
 	});
@@ -29,6 +29,14 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 	    });
 	});
 
+	function clear(){
+		if($scope.objectif.kg != null){
+			$scope.$apply(function(){
+				$scope.libelle = '';
+			});
+		}
+	}
+
 	//Submit button (update current month)
 	$('.addObj').unbind('click').on('click', function(){
 		if(!isNaN($scope.objectif.kg)){
@@ -42,6 +50,7 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 				$scope.$apply(function(){
 			        $scope.percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
 			        $scope.percent = !isNaN($scope.percent) ? '('+$scope.percent+'%)' : '';
+			        $scope.libelle = $scope.objectif.kg!=null ? ' Kg de CO2' : ' - ';
 			    });
 			}, datas, 'get');
 		}
