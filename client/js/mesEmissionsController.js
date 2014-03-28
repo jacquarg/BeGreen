@@ -20,7 +20,7 @@ begreen.controller('mes-emissions', ['$scope', '$location', 'Emission', function
         dateFormatedArray.push(month[index]);
       };
       $.ajax({
-          url: "/lastMonths"
+          url: "lastMonths"
         }).success(function (data) {
         $('#graph-mes-emissions').highcharts({
             title: {

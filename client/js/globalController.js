@@ -17,7 +17,7 @@ begreen.controller('global', ['$scope', '$location', 'Emission', 'TotalEmission'
     // console.log($scope.totalEmission);
     // total emission
     $.ajax({
-      url: "/totalOfMounth"
+      url: "totalOfMounth"
     }).success(function (data) {
         $scope.totalEmission = Number(data[0]) / 1000;
         $scope.totalEmission = $scope.totalEmission.toFixed(2);

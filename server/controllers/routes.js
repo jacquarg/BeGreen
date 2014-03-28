@@ -23,6 +23,10 @@ module.exports = {
         get: ReceiptDetails.lastMonths
     },
 
+   'lastMonthsCategories': {
+        get: ReceiptDetails.lastMonthsCategories
+    },
+
    'currentMonthDatas': {
         get: ReceiptDetails.currentMonthDatas
     },

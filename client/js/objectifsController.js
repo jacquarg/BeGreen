@@ -10,7 +10,7 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 	    });
 	});
 
-	loadResource('/objectifs', function(data){
+	loadResource('objectifs', function(data){
 		$.each(data, function(i, d){
 			var promise = getStatus(d);
 			promise.then(function(status){
@@ -33,7 +33,7 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 				kg: $scope.objectif.kg
 			}
 			//Updates all the previous objectifs
-			loadResource('/objectifs/update', function(){
+			loadResource('objectifs/update', function(){
 				$('.ok').removeClass('okInvisible');
 			}, datas, 'get');
 		}

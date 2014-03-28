@@ -272,4 +272,65 @@ module.exports.totalForThisMonth = function(req, res) {
   });
 };
 
+module.exports.lastMonthsCategories = function(req, res) {
+  ReceiptDetail.all(function(err, instances) {
+    if(err != null) {
+      res.send(500, "An error has occurred -- " + err);
+    }
+    else {
+      // addMonths
+      function addMonths(date, months) {
+        date.setMonth(date.getMonth() + months);
+        return date;
+      }
+
+      var maDate = addMonths(new Date(), -5);
+      var currentYear = maDate.getFullYear();
+      var dateArray = [];
+      var date;
+      for (var i = 0; i < 6; i++) {
+        var month = maDate.getMonth();
+        var year = maDate.getFullYear();
+        var fullDate = year + '-' + month;
+        dateArray.push(fullDate);
+        maDate.setMonth(maDate.getMonth() + 1);
+      };
+      // console.log(dateArray);
+
+      function findSameCategory () {
+        var result = false
+        console.log(lastMonthsCategories[0]);
+        for (var i = 0; i < lastMonthsCategories.length; i++) {
+          var data = lastMonthsCategories[i];
+          // console.log(section);
+          // console.log(data.name);
+          if (data.name == section) {
+            // console.log(section);
+            result = true;
+          } else {
+            // console.log('notFound');
+          }
+        };
+        return result;
+      }
+
+
+      var lastMonthsCategories = ['CREMERIE'];
+      for (var i = 0; i < instances.length; i++) {
+        var data = instances[i];
+        var section = data.sectionLabel;
+        findSameCategory();
+        var toAdd = {
+          name: section,
+          data: []
+        }
+        // lastMonthsCategories.push(toAdd);
+      };
+      // var data = lastMonthsCategories[2];
+      // console.log(data.name);
+
+      res.send(200, lastMonthsCategories);
+    }
+  });
+};
 
