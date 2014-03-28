@@ -29,14 +29,6 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 	    });
 	});
 
-	function clear(){
-		if($scope.objectif.kg != null){
-			$scope.$apply(function(){
-				$scope.libelle = '';
-			});
-		}
-	}
-
 	//Submit button (update current month)
 	$('.addObj').unbind('click').on('click', function(){
 		if(!isNaN($scope.objectif.kg)){
