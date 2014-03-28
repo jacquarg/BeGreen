@@ -9,6 +9,8 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 		        $scope.objectif = data[0];
 		        $scope.currentConsumption = $scope.$parent.totalEmission;
 		        $scope.percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
+		      	$scope.percent = !isNaN($scope.percent) ? '('+$scope.percent+'%)' : '';
+		      	console.log($scope.percent);
 		    }, 500);
 	    });
 	});
@@ -39,6 +41,7 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 				$('.ok').removeClass('okInvisible');
 				$scope.$apply(function(){
 			        $scope.percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
+			        $scope.percent = !isNaN($scope.percent) ? '('+$scope.percent+'%)' : '';
 			    });
 			}, datas, 'get');
 		}
