@@ -53,6 +53,7 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 	$scope.updatePercent = function(){
 		var percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
 		$scope.percent = !isNaN(percent) ? '('+percent+'%)' : '';
+		$scope.libelle = $scope.objectif.kg!=null ? ' Kg de CO2' : ' - ';
 	}
 
 	//Return a percent according to 2 values
