@@ -10,11 +10,48 @@ Objectif.all = function(callback) {
     Objectif.request(
         "all",
         {
-            'limit': 6
+            'orderby': 'month',
+            'limit': 7,
+            'descending': false
         },
         function allObjectifsFound(err, instances) {
             if(!err){
                 console.log('[OK] Objectifs found');
+                if(instances.length>1){
+                    instances.sort(function(a, b){
+                        var dateA=new Date(a.month), dateB=new Date(b.month)
+                        return dateA-dateB; //sort by date ascending
+                    });
+                    var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                    var diffDays = Math.round(Math.abs((new Date().getTime() - new Date(instances[instances.length-1].month).getTime())/(oneDay)));
+                    if(diffDays<30){
+                        instances.splice((instances.length-1),1);   
+                    }
+                    callback(null, instances);
+                }else{
+                    callback(null, null);
+                }
+            }else{
+                console.log('[ERR] No objectif found');
+                callback(err);
+            }
+        }
+    );
+};
+
+Objectif.getAll = function(callback) {
+    Objectif.request(
+        "all",
+        {
+            'descending': false
+        },
+        function allObjectifsFound(err, instances) {
+            if(!err){
+                console.log('[OK] Objectifs found');
+                instances.sort(function(a, b){
+                    var dateA=new Date(a.month), dateB=new Date(b.month)
+                    return dateA-dateB; //sort by date ascending
+                });
                 callback(null, instances);
             }else{
                 console.log('[ERR] No objectif found');
@@ -47,7 +84,7 @@ Objectif.findLatest = function(callback) {
     Objectif.request(
         "all",
         {
-            'descending': false,
+            'descending': true,
             'limit': 1
         },
         function objectifFound(err, instance) {
@@ -96,14 +133,13 @@ Objectif.updateObj = function(params, callback){
                 objectif.save(function(err) {
                     console.log('[OK] Objectif updated');
                     callback(null, objectif);
-                });    
+                });
             }else{
                 console.log('[ERR] Failed updating objectif');
                 callback(err);
             }
         });
     }else{
-        console.log('Param id non existant');
         Objectif.create({
             month: new Date().getTime(),
             kg: params.kg,

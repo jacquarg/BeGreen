@@ -4,6 +4,7 @@
 		<form name="ajoutObjectif">
 			<input placeholder="Objectif en Kg de CO2" type="text" name="objectifInput" ng-model="objectif.kg" ng-pattern="/^[\d]{1,4}$/"/>
 			<input type="submit" class="btnUpdateObj addObj" data-id="{{objectif.id}}" value="Valider"/>
+			<img src="img/ok.png" alt="OK" class="ok okInvisible"/>
 		</form><hr />
 	</div>
 	<div class="objectifsMensuels">
@@ -11,15 +12,16 @@
 		<p>{{objectif.kg}} Kg de CO2</p><br/>
 	</div>
 	<div>
-		<h1>Liste des objectifs passés :</h1>
+		<h1>Liste des objectifs des six derniers mois :</h1>
 		<ul>
 		    <li class="clearfix listingObjectifs" ng-repeat="obj in objs | orderBy:'-month'">
 				<div class="date"><p>{{obj.month | date : 'MMM'}}</p></div>
 				<div class="content">
-					<p class="libelle">{{obj.kg}} Kg de CO2</p>
+					<p class="libelle">Éstimé : {{obj.kg}} Kg de CO2 - Effectif : {{obj.effectif}} Kg</p>
 					<p class="family">{{obj.status}}</p>
 				</div>
 		    </li>
 		</ul>
+		<div class="noObjs noObjsHidden">Aucun objectif recensé</div>
 	</div>
 </section>

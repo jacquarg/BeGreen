@@ -4,6 +4,8 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 
 	loadResource('objectifs/findLatest', function(data){
 		$scope.$apply(function(){
+			console.log('latest:');
+			console.log(data);
 	        $scope.objectif = data[0];
 	    });
 	});
@@ -16,18 +18,24 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 			});
 		});
 		$scope.$apply(function(){
-	        $scope.objs = data;
+			if(data.length>0)
+	        	$scope.objs = data;
+	        else
+	        	$('.noObjs').removeClass('noObjsHidden');
 	    });
 	});
 
-	// Submit button
+	//Submit button (update current month)
 	$('.addObj').unbind('click').on('click', function(){
 		if(!isNaN($scope.objectif.kg)){
 			var datas = {
 				id: $scope.objectif.id,
 				kg: $scope.objectif.kg
 			}
-			loadResource('/objectifs/update', function(data){}, datas, 'get');
+			//Updates all the previous objectifs
+			loadResource('/objectifs/update', function(){
+				$('.ok').removeClass('okInvisible');
+			}, datas, 'get');
 		}
 	});
 
@@ -52,6 +60,7 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 		var year = new Date(objectif.month).getFullYear();
 		var formatedDate = year+'-'+month;
 		loadResource('totalForThisMonth/'+formatedDate, function(conso){
+			objectif.effectif = Math.floor(conso[0], 3);
 			deferred.resolve(compare(objectif.kg, Math.floor(conso[0])));
 		});
 		return deferred.promise;

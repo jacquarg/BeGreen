@@ -61,6 +61,10 @@ module.exports = {
 
     'objectifs/findLatest': {
     	get: Objectifs.findLatest
-    }
+    },
+
+    'objectifs/getAll': {
+        get: Objectifs.getAll
+    }    
 
 };

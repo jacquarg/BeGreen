@@ -14,8 +14,22 @@ module.exports.list = function(req, res) {
       res.send(500, "An error has occurred -- " + err);
     }
     else {
-      data = objectifs;
-      res.send(200, data);
+    	if(objectifs!=null){
+			res.send(200, objectifs);
+		}else{
+			res.send(200, {});
+		}
+    }
+  });
+};
+
+module.exports.getAll = function(req, res) {
+  Objectif.getAll(function(err, objectifs) {
+    if(err != null) {
+      res.send(500, "An error has occurred -- " + err);
+    }
+    else {
+		res.send(200, objectifs);
     }
   });
 };
