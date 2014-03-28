@@ -22,7 +22,7 @@ a:hover {
     text-decoration: none;
 }
 
-p, h1, h2, h3, span, a, input {
+p, h1, h2, h3, span, a, input, ul, li {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -491,6 +491,52 @@ input[type=submit] {
     text-align: center;
     line-height: 45px;
 }
+
+/*****************
+***
+*** A-PROPOS
+***
+*****************/
+
+.a-propos  {
+    padding: 20px;
+    line-height: 1.8em;
+    padding-bottom: 100px;
+}
+
+.a-propos h1 {
+    font-size: 1.8em;
+    color: #4ab56f;
+    font-family: 'Pacifico', sans-serif;
+    padding-top: 40px;
+}
+
+.a-propos ul {
+    border: none;
+    list-style-type: circle;
+    margin-left: 10px;
+}
+
+
+.a-propos h2 {
+    font-size: 1.2em;
+    color: #4ab56f;
+    font-family: 'Source-sans-pro', sans-serif;
+}
+
+.a-propos a:hover {
+    color: #428bca;
+}
+
+.a-propos li {
+    border: none;
+    margin-left: 40px;
+}
+
+
+
+
+
 
 /*****************
 ***
