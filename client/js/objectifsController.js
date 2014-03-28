@@ -4,15 +4,15 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 
 	//Go grab the latest objectif, if it exists
 	loadResource('objectifs/findLatest', function(data){
-		$scope.$apply(function(){
-			setTimeout(function(){
+		setTimeout(function(){
+			$scope.$apply(function(){
 		        $scope.objectif = data[0];
 		        $scope.currentConsumption = $scope.$parent.totalEmission;
 		        $scope.percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
 		      	$scope.percent = !isNaN($scope.percent) ? '('+$scope.percent+'%)' : '';
 		      	$scope.libelle = $scope.objectif.kg!=null ? ' Kg de CO2' : ' - ';
-		    }, 500);
-	    });
+		    });
+	    }, 500);
 	});
 
 	//Go grab all the objectifs
@@ -37,17 +37,25 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 				kg: $scope.objectif.kg
 			}
 			//Updates all the previous objectifs
-			loadResource('objectifs/update', function(){
+			loadResource('objectifs/update', function(data){
+				$scope.objectif = data;
 				$('.ok').removeClass('okInvisible');
 				$scope.$apply(function(){
-			        $scope.percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
-			        $scope.percent = !isNaN($scope.percent) ? '('+$scope.percent+'%)' : '';
+			        var percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
+			        $scope.percent = !isNaN(percent) ? '('+percent+'%)' : '';
 			        $scope.libelle = $scope.objectif.kg!=null ? ' Kg de CO2' : ' - ';
 			    });
 			}, datas, 'get');
 		}
 	});
 
+	//Live update objectif percent, only in front
+	$scope.updatePercent = function(){
+		var percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
+		$scope.percent = !isNaN(percent) ? '('+percent+'%)' : '';
+	}
+
+	//Return a percent according to 2 values
 	function getPercent(val1, val2){
 		return Math.floor(100*parseFloat(val1)/parseFloat(val2), 2);
 	}
