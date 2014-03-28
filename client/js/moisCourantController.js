@@ -1,6 +1,6 @@
 begreen.controller('mois-courant', ['$scope', '$location', 'Emission', function($scope, $location, Emission) {
       $.ajax({
-          url: "/categoriesThisMonth"
+          url: "categoriesThisMonth"
         }).success(function (data) {
               $('#graph-analyse').highcharts({
                   chart: {

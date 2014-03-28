@@ -8,7 +8,7 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 	    });
 	});
 
-	loadResource('/objectifs', function(data){
+	loadResource('objectifs', function(data){
 		$.each(data, function(i, d){
 			var promise = getStatus(d);
 			promise.then(function(status){
@@ -27,7 +27,7 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 				id: $scope.objectif.id,
 				kg: $scope.objectif.kg
 			}
-			loadResource('/objectifs/update', function(data){}, datas, 'get');
+			loadResource('objectifs/update', function(data){}, datas, 'get');
 		}
 	});
 
