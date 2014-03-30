@@ -524,8 +524,12 @@ input[type=submit] {
     font-family: 'Source-sans-pro', sans-serif;
 }
 
+.a-propos a {
+    color: #4ab56f;
+}
+
 .a-propos a:hover {
-    color: #428bca;
+    color: #4ab56f;
 }
 
 .a-propos li {
@@ -580,17 +584,3 @@ input[type=submit] {
 		display: none;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -2,21 +2,6 @@
 
 /* Filters */
 
-// angular.module('begreen.filters', []).
-//   filter('interpolate', ['version', function(version) {
-//     return function(text) {
-//       return String(text).replace(/\%VERSION\%/mg, version);
-//     }
-//   }]);
-
-// angular.module('begreen.filters', []).
-//     filter('changeMyDate', 'filterFilter', function(filterFilter) {
-//         // return function(date, filterFilter) {
-//             // return date;
-//             return;
-//     // };
-// });
-
 angular.module('begreen.filters', []).
   filter('changeMyDate', ['$filter',
     function($filter) {
