@@ -5,7 +5,8 @@ begreen.controller('mes-emissions', ['$scope', '$location', 'Emission', function
         return date;
       }
 
-      var maDate = addMonths(new Date(), -5); // six months before now
+      var maDate = addMonths(new Date(), -4); // six months before now
+      maDate.setDate(15);
       var dateArray = [];
       var date;
       for (var i = 0; i < 6; i++) {

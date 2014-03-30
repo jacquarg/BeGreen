@@ -225,141 +225,143 @@ module.exports.totalForThisMonth = function(req, res) {
   });
 };
 
-// module.exports.lastMonthsCategories = function(req, res) {
-//   ReceiptDetail.all(function(err, instances) {
-//     if(err != null) {
-//       res.send(500, "An error has occurred -- " + err);
-//     }
-//     else {
-//       // addMonths
-//       function addMonths(date, months) {
-//         date.setMonth(date.getMonth() + months);
-//         return date;
-//       }
-
-//       var maDate = addMonths(new Date(), -5);
-//       var currentYear = maDate.getFullYear();
-//       var dateArray = [];
-//       var date;
-//       for (var i = 0; i < 6; i++) {
-//         var month = maDate.getMonth();
-//         var year = maDate.getFullYear();
-//         var fullDate = year + '-' + month;
-//         dateArray.push(fullDate);
-//         maDate.setMonth(maDate.getMonth() + 1);
-//       };
-//       console.log(dateArray);
-
-//       var lastMonthsCategories = [];
-
-
-//       function findSameCategory () {
-//         var result = false;
-//         for (var i = 0; i < lastMonthsCategories.length; i++) {
-//           var data = lastMonthsCategories[i];
-//           if (data.name == section) {
-//             result = i;
-//           }
-//         };
-//         return result;
-//       }
-
-//       for (var i = 0; i < instances.length; i++) {
-//         var data = instances[i];
-//         var section = data.sectionLabel;
-//         console.log(section);
-//         var indexForLastMonthsCategories = findSameCategory();
-//         if (indexForLastMonthsCategories === false) {
-//           var toAdd = {
-//             name: section,
-//             data: [0,0,3,3,3,0]
-//           }
-//           lastMonthsCategories.push(toAdd);
-//         }
-//         var month = data.month;
-//         var timestamp = data.timestamp;
-//         var year = timestamp.getFullYear();
-//         var period = year+'-'+month;
-//         var index = dateArray.indexOf(period);
-//         if (index != -1) {
-//           var toPut = lastMonthsCategories[indexForLastMonthsCategories].data[index];
-
-//           toPut += data.emission;
-//           console.log(toPut);
-//         };
-//       };
-//       console.log(lastMonthsCategories);
-
-//       res.send(200, lastMonthsCategories);
-//     }
-//   });
-// };
-
-//---------------------------------------------------------------------------//
-
-
-module.exports.lastMonthsCategories = function(req, res){
-  ReceiptDetail.all(function(err, instances){
+module.exports.lastMonthsCategories = function(req, res) {
+  ReceiptDetail.all(function(err, instances) {
     if(err != null) {
       res.send(500, "An error has occurred -- " + err);
-    }else{
-      var lastMonthsCategories = [];
-      var indexForLastMonthsCategories;
+    }
+    else {
+      // addMonths
+      function addMonths(date, months) {
+        date.setMonth(date.getMonth() + months);
+        return date;
+      }
+
       var maDate = addMonths(new Date(), -5);
+      var currentYear = maDate.getFullYear();
       var dateArray = [];
       var date;
-      var toAdd;
-      var period;
-      var index;
-      var toPut;
-
-      //fill the date array with 6 exactly same dates
-      for(var i=0; i<6; i++) {
+      for (var i = 0; i < 6; i++) {
         var month = maDate.getMonth();
         var year = maDate.getFullYear();
         var fullDate = year + '-' + month;
         dateArray.push(fullDate);
         maDate.setMonth(maDate.getMonth() + 1);
-      }
-      // dateArray : 2013-09 -> 2014-02
+      };
+      console.log(dateArray);
 
-      //sizeof lastmonth : 1116
-      for(var j=0; j<instances.length; j++){
-        data = instances[i];
-        indexForLastMonthsCategories = findSameCategory(lastMonthsCategories, data.sectionLabel);
-        if(indexForLastMonthsCategories == false) {
-          toAdd = {
-            name: data.sectionLabel,
+      var lastMonthsCategories = [];
+
+
+      function findSameCategory () {
+        var result = false;
+        for (var i = 0; i < lastMonthsCategories.length; i++) {
+          var data = lastMonthsCategories[i];
+          if (data.name == section) {
+            result = i;
+          }
+        };
+        return result;
+      }
+
+      for (var i = 0; i < instances.length; i++) {
+        var data = instances[i];
+        var section = data.sectionLabel;
+        // console.log(section);
+        var indexForLastMonthsCategories = findSameCategory();
+        if (indexForLastMonthsCategories === false) {
+          var toAdd = {
+            name: section,
             data: [0,0,3,3,3,0]
           }
           lastMonthsCategories.push(toAdd);
         }
-        period = data.timestamp.getFullYear()+'-'+data.timestamp.getMonth();
-        index = dateArray.indexOf(period);
-        //N'est pas dedans : 2013-3 => dateArray : 2013-09 -> 2014-02
-        if(index!=-1){
-          toPut = lastMonthsCategories[indexForLastMonthsCategories].data[index];
-          toPut += data.emission;
+        var month = data.month;
+        var timestamp = data.timestamp;
+        var year = timestamp.getFullYear();
+        var period = year+'-'+month;
+        var index = dateArray.indexOf(period);
+        if (index != -1) {
+          var toPut = Number(lastMonthsCategories[indexForLastMonthsCategories].data[index]);
           console.log(toPut);
-        }
-      }
+          toPut += Number(data.emission);
+          console.log(toPut);
+        console.log(lastMonthsCategories);
+        };
+      };
       console.log(lastMonthsCategories);
+
       res.send(200, lastMonthsCategories);
     }
   });
 };
 
-function addMonths(date, months) {
-  date.setMonth(date.getMonth() + months);
-  return date;
-}
+//---------------------------------------------------------------------------//
 
-function findSameCategory(lastMonthsCategories, section) {
-  var result = false;
-  for (var i=0; i<lastMonthsCategories.length; i++) {
-    if (lastMonthsCategories[i].name == section) {
-      result = i;
-    }
-  }
-  return result;
-}
+
+// module.exports.lastMonthsCategories = function(req, res){
+//   ReceiptDetail.all(function(err, instances){
+//     if(err != null) {
+//       res.send(500, "An error has occurred -- " + err);
+//     }else{
+//       var lastMonthsCategories = [];
+//       var indexForLastMonthsCategories;
+//       var maDate = addMonths(new Date(), -5);
+//       var dateArray = [];
+//       var date;
+//       var toAdd;
+//       var period;
+//       var index;
+//       var toPut;
+
+//       //fill the date array with 6 exactly same dates
+//       for(var i=0; i<6; i++) {
+//         var month = maDate.getMonth();
+//         var year = maDate.getFullYear();
+//         var fullDate = year + '-' + month;
+//         dateArray.push(fullDate);
+//         maDate.setMonth(maDate.getMonth() + 1);
+//       }
+//       // dateArray : 2013-09 -> 2014-02
+
+//       //sizeof lastmonth : 1116
+//       for(var j=0; j<instances.length; j++){
+//         data = instances[i];
+//         indexForLastMonthsCategories = findSameCategory(lastMonthsCategories, data.sectionLabel);
+//         if(indexForLastMonthsCategories == false) {
+//           toAdd = {
+//             name: data.sectionLabel,
+//             data: [0,0,3,3,3,0]
+//           }
+//           lastMonthsCategories.push(toAdd);
+//         }
+//         period = data.timestamp.getFullYear()+'-'+data.timestamp.getMonth();
+//         index = dateArray.indexOf(period);
+//         //N'est pas dedans : 2013-3 => dateArray : 2013-09 -> 2014-02
+//         if(index!=-1){
+//           toPut = lastMonthsCategories[indexForLastMonthsCategories].data[index];
+//           toPut += data.emission;
+//           console.log(toPut);
+//         }
+//       }
+//       console.log(lastMonthsCategories);
+//       // console.log(instances);
+//       res.send(200, lastMonthsCategories);
+//     }
+//   });
+// };
+
+// function addMonths(date, months) {
+//   date.setMonth(date.getMonth() + months);
+//   return date;
+// }
+
+// function findSameCategory(lastMonthsCategories, section) {
+//   var result = false;
+//   for (var i=0; i<lastMonthsCategories.length; i++) {
+//     if (lastMonthsCategories[i].name == section) {
+//       result = i;
+//     }
+//   }
+//   return result;
+// }
