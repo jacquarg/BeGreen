@@ -18,6 +18,8 @@ module.exports.categoriesThisMonth = function(req, res) {
     }
     else {
       var date = new Date();
+      date.setDate(15);
+      var maDate = addMonths(date, -5);
       var currentMonth = date.getMonth();
       var dataMonth = [];
       for (var i = 0; i < instances.length; i++) {
@@ -77,7 +79,9 @@ module.exports.lastMonths = function(req, res) {
         return date;
       }
 
-      var maDate = addMonths(new Date(), -5);
+      var maDate = new Date();
+      maDate.setDate(15);
+      var maDate = addMonths(maDate, -5);
       var currentYear = maDate.getFullYear();
       var dateArray = [];
       var date;
@@ -232,7 +236,9 @@ module.exports.lastMonthsCategories = function(req, res) {
     }
     else {
       var indexForLastMonthsCategories;
-      var maDate = addMonths(new Date(), -5);
+      var maDate = new Date();
+      maDate.setDate(15);
+      var maDate = addMonths(maDate, -5);
       var lastMonthsCategories = [];
       var dateArray = [];
       var toPut;

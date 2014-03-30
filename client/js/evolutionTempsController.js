@@ -1,22 +1,47 @@
 begreen.controller('evolution-temps', ['$scope', '$location', 'Emission', function($scope, $location, Emission) {
 
-  $scope.currentMonthDatas = Emission.query();
+function addMonths(date, months) {
+date.setMonth(date.getMonth() + months);
+return date;
+}
+
+var maDate = addMonths(new Date(), -5); // six months before now
+maDate.setDate(15);
+var dateArray = [];
+var date;
+for (var i = 0; i < 6; i++) {
+var index = maDate.getMonth();
+dateArray.push(index);
+maDate.setMonth(maDate.getMonth() + 1);
+};
+var month = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+var dateFormatedArray = [];
+for (var i = 0; i < dateArray.length; i++) {
+var index = dateArray[i];
+dateFormatedArray.push(month[index]);
+};
 
 $.ajax({
     url: 'lastMonthsCategories'
 }).success(function (data) {
-    $('#graph-analyse').highcharts({
+    for (var i = 0; i < data.length; i++) {
+        var item = data[i].data;
+        for (var j = 0; j < item.length; j++) {
+            item[j] = parseFloat(item[j]);
+        };
+    };
+      $('#graph-analyse').highcharts({
         chart: {
             type: 'area'
         },
         title: {
-            text: 'Historic and Estimated Worldwide Population Growth by Region'
+            text: ''
         },
         subtitle: {
-            text: 'Source: Wikipedia.org'
+            text: ''
         },
         xAxis: {
-            categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+            categories: dateFormatedArray,
             tickmarkPlacement: 'on',
             title: {
                 enabled: false
@@ -24,17 +49,13 @@ $.ajax({
         },
         yAxis: {
             title: {
-                text: 'Billions'
+                text: 'Kg'
             },
-            labels: {
-                formatter: function() {
-                    return this.value / 1000;
-                }
-            }
+            labels: []
         },
         tooltip: {
             shared: true,
-            valueSuffix: ' millions'
+            valueSuffix: ' grammes'
         },
         plotOptions: {
             area: {
@@ -47,21 +68,7 @@ $.ajax({
                 }
             }
         },
-        series: [{
-            name: 'Asia',
-            data: [502, 635, 809, 947, 1402, 3634, 5268]
-        }, {
-            name: 'Africa',
-            data: [106, 107, 111, 133, 221, 767, 1766]
-        }, {
-            name: 'Europe',
-            data: [163, 203, 276, 408, 547, 729, 628]
-        }, {
-            name: 'America',
-            data: [18, 31, 54, 156, 339, 818, 1201]
-        }, {
-            name: 'Oceania',
-            data: [2, 2, 2, 6, 13, 30, 46]
-        }]
-    });
-})
+        series: data
+        });
+    })
+}]);
