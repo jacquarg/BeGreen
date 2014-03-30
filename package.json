@@ -19,9 +19,6 @@
   },
   "cozy-displayName": "BeGreen - Vivez mieux, vivez sain",
   "cozy-permissions": {
-    "Receipt": {
-      "description": "Visualiser la liste de vos tickets de caisse."
-    },
     "ReceiptDetail": {
       "description": "Visualiser les lignes de vos tickets de caisse."
     }
