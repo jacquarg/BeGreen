@@ -2,6 +2,11 @@ begreen.controller('evolution-temps', ['$scope', '$location', 'Emission', functi
 
   $scope.currentMonthDatas = Emission.query();
 
+  // $('body').on('click', '#select-periode a', function(e){
+  //   $('.active').removeClass('active');
+  //   $('this').addClass('active');
+  // });
+
   $('#graph-analyse').highcharts({
     title: {
         text: 'Vos émissions de CO2',
