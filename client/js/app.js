@@ -1,6 +1,5 @@
 'use strict';
 
-
 // Declare app level module which depends on filters, and services
 angular.module('begreenApp', [
   'ngRoute',
@@ -16,4 +15,4 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/analyse/objectifs', {templateUrl: 'partials/objectifs.html', controller: 'objectifs'});
   $routeProvider.when('/a-propos', {templateUrl: 'partials/a-propos.html', controller: 'a-propos'});
   $routeProvider.otherwise({redirectTo: '/mes-emissions'});
-}])
+}]);

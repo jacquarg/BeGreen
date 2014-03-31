@@ -30,7 +30,7 @@ Plus d'informations ici : http://mesinfos.fing.org/begreen-vivons-mieux-vivons-s
   </tr>
   <tr>
     <td><img src="https://avatars2.githubusercontent.com/u/5598799?s=80" alt="lead dev"/></td>
-    <td><h4>HAELIN Thibaut</h4><h5>Responsable base carbone</h5></td>
+    <td><h4>HAENLIN Thibaut</h4><h5>Responsable base carbone</h5></td>
     <td><a href="https://www.linkedin.com/profile/view?id=151630627"><img src="http://www.tlogistics.eu/wp-content/uploads/2013/01/Linkedin-Logo1.png" alt="LinkedIn"/></a></td>
     <td><a href="https://github.com/thibautha"><img src="http://ciembor.github.io/4bit/images/github.png" alt="LinkedIn"/></a></td>
   </tr>
