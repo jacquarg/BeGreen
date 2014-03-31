@@ -1,4 +1,5 @@
 ReceiptDetail = require('../models/receiptdetail');
+fakeDatas = require('../models/fakeDatas');
 
 module.exports.list = function(req, res) {
   ReceiptDetail.all(function(err, instances) {
@@ -17,6 +18,10 @@ module.exports.categoriesThisMonth = function(req, res) {
       res.send(500, "An error has occurred -- " + err);
     }
     else {
+      if (instances === {}) {
+        instances = fakeDatas;
+        console.log('fake datas !');
+      };
       var date = new Date();
       date.setDate(15);
       var maDate = addMonths(date, -5);
@@ -73,6 +78,10 @@ module.exports.lastMonths = function(req, res) {
       res.send(500, "An error has occurred -- " + err);
     }
     else {
+      if (instances === {}) {
+        instances = fakeDatas;
+        console.log('fake datas !');
+      };
       // addMonths
       function addMonths(date, months) {
         date.setMonth(date.getMonth() + months);
@@ -130,6 +139,10 @@ module.exports.currentMonthDatas = function(req, res) {
             res.send(500, "An error has occurred -- " + err);
         }
         else {
+          if (instances === {}) {
+            instances = fakeDatas;
+            console.log('fake datas !');
+          };
           var date = new Date();
           var month = date.getMonth();
           var year = date.getFullYear();
@@ -159,6 +172,10 @@ module.exports.withReceiptId = function(req, res) {
             res.send(500, "An error has occurred -- " + err);
         }
         else {
+          if (instances === {}) {
+            instances = fakeDatas;
+          console.log('fake datas !');
+          };
           for (var i = 0; i < instances.length; i++) {
             var family = 'a'+instances[i].family;
             instances[i].emission = baseCarbone[family].empreinteCarbone;
@@ -180,6 +197,10 @@ module.exports.totalOfMounth = function(req, res) {
       res.send(500, "An error has occurred -- " + err);
     }
     else {
+      if (instances === {}) {
+        instances = fakeDatas;
+        console.log('fake datas !');
+      };
      var date = new Date();
       var currentMonth = date.getMonth();
       var currentYear = date.getFullYear();
@@ -208,6 +229,10 @@ module.exports.totalForThisMonth = function(req, res) {
       res.send(500, "An error has occurred -- " + err);
     }
     else {
+      if (instances === {}) {
+        instances = fakeDatas;
+        console.log('fake datas !');
+      };
       var currentPeriod = req.params.date;
 
       totalEmission = 0;
@@ -235,6 +260,10 @@ module.exports.lastMonthsCategories = function(req, res) {
       res.send(500, "An error has occurred -- " + err);
     }
     else {
+      if (instances === {}) {
+        instances = fakeDatas;
+        console.log('fake datas !');
+      };
       var indexForLastMonthsCategories;
       var maDate = new Date();
       maDate.setDate(15);
