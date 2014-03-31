@@ -38,6 +38,9 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 			loadResource('objectifs/update', function(data){
 				$scope.objectif = data;
 				$('.ok').removeClass('okInvisible');
+				setTimeout(function(){
+					$('.ok').addClass('okInvisible');
+				}, 2000);
 				$scope.$apply(function(){
 			        $scope.updatePercent();
 			    });
@@ -48,8 +51,10 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 	//Live update objectif percent, only in front
 	$scope.updatePercent = function(){
 		var percent = getPercent(parseFloat($scope.currentConsumption), parseFloat($scope.objectif.kg));
-		$scope.percent = !isNaN(percent) ? '('+percent+'%)' : '';
-		$scope.libelle = $scope.objectif.kg!=null ? ' Kg de CO2' : ' - ';
+		var currentDate = new Date($scope.$parent.dateNow);
+		var message = ' Kg de CO2 pour '+(frenchMonth(currentDate.getMonth())+' '+currentDate.getFullYear())+' ';
+		$scope.percent = !isNaN(percent) ? '(atteint à '+percent+'%)' : '';
+		$scope.libelle = $scope.objectif.kg!=null ? message : ' - ';
 	}
 
 	//Return a percent according to 2 values
@@ -107,6 +112,24 @@ begreen.controller('objectifs', ['$scope', '$location', '$q', 'Emission', functi
 			return 'Quelle précision !';
 		}
 		return deferred.promise;
+	}
+
+	//Returns the month according to its number
+	function frenchMonth(month){
+		switch(month){
+			case 0: return 'Janvier';
+			case 1: return 'Février';
+			case 2: return 'Mars';
+			case 3: return 'Avril';
+			case 4: return 'Mai';
+			case 5: return 'Juin';
+			case 6: return 'Juillet';
+			case 7: return 'Août';
+			case 8: return 'Septembre';
+			case 9: return 'Octobre';
+			case 10: return 'Novembre';
+			case 11: return 'Décembre';
+		}
 	}
 
 }]);
