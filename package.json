@@ -21,6 +21,9 @@
   "cozy-permissions": {
     "ReceiptDetail": {
       "description": "Visualiser les lignes de vos tickets de caisse."
+    },
+    "Objectif": {
+      "description": "Vous permet d'ajouter de nouveaux objectifs pour diminuer vos émissions de CO2."
     }
   }
 }
