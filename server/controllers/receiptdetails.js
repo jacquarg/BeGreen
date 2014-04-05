@@ -126,25 +126,27 @@ module.exports.lastMonths = function(req, res) {
 
 module.exports.currentMonthDatas = function(req, res) {
 
-    ReceiptDetail.all(function(err, instances) {
+    ReceiptDetail.request('all', {order: 'timestamp'}, function(err, instances) {
         if(err != null) {
             res.send(500, "An error has occurred -- " + err);
         }
         else {
-          var date = new Date();
-          var month = date.getMonth();
-          var year = date.getFullYear();
-          var period = year+'-'+month;
+
+          function compare(a,b) {
+            if (a.timestamp < b.timestamp)
+               return -1;
+            if (a.timestamp > b.timestamp)
+              return 1;
+            return 0;
+          }
+
+          instances.sort(compare);
+
           var datas = [];
-          for (var i = 0; i < instances.length; i++) {
-            var data = instances[i];
-            var timestamp = data.timestamp;
-            var month = timestamp.getMonth();
-            var year = timestamp.getFullYear();
-            var dataPeriod = year+'-'+month;
-            if (period == dataPeriod) {
-              datas.push(data);
-            };
+          var instancesLength = instances.length;
+          var limit = instances.length - 30;
+          for (var i = instancesLength - 1; i >= limit; i--) {
+            datas.push(instances[i])
           };
 
           res.send(200, datas);

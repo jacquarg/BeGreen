@@ -12,7 +12,7 @@ begreen.controller('menu', ['$scope', '$location', 'Emission', function($scope, 
     $scope.navClass = function (page) {
         var currentRoute = $location.path().substring(1) || 'home';
         return (page == currentRoute || 
-            (currentRoute == 'analyse/mois-courant' && page == 'analyse/evolution-temps')) 
+            (currentRoute == 'analyse/mois-dernier' && page == 'analyse/evolution-temps')) 
             ? 'active' : '';
     };
 

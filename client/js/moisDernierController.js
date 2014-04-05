@@ -1,4 +1,4 @@
-begreen.controller('mois-courant', ['$scope', '$location', 'Emission', function($scope, $location, Emission) {
+begreen.controller('mois-dernier', ['$scope', '$location', 'Emission', function($scope, $location, Emission) {
       $.ajax({
           url: "categoriesThisMonth"
         }).success(function (data) {
