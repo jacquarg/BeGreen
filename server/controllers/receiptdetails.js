@@ -17,15 +17,20 @@ module.exports.categoriesThisMonth = function(req, res) {
       res.send(500, "An error has occurred -- " + err);
     }
     else {
-      var date = new Date();
-      date.setDate(15);
-      var maDate = addMonths(date, -5);
-      var currentMonth = date.getMonth();
-      var dataMonth = [];
+
+      var maDate = new Date();
+      maDate.setDate(15);
+      var maDate = addMonths(maDate, -1);
+      var currentMonth = maDate.getFullYear()+'-'+maDate.getMonth();
+
+      var dataArray = [];
+      // var date;
       for (var i = 0; i < instances.length; i++) {
-        data = instances[i];
-        if (data.month = currentMonth) {
-          dataMonth.push(data);
+        var data = instances[i];
+        var dataTimestamp = data.timestamp;
+        var dataMonth = dataTimestamp.getFullYear()+'-'+dataTimestamp.getMonth();
+        if (dataMonth == currentMonth) {
+          dataArray.push(data);
         };
       };
 
@@ -33,11 +38,7 @@ module.exports.categoriesThisMonth = function(req, res) {
       function addData (categoriesThisMonth) {
          for (var i = 0; i < categoriesThisMonth.length; i++) {
               if (categoriesThisMonth[i][0] == family) {
-                if (categoriesThisMonth[i][1] === undefined) {
-                  categoriesThisMonth[i][1] = Number(data.emission);
-                } else {
                 categoriesThisMonth[i][1] += Number(data.emission);
-              }
               }
           };
       }
@@ -53,11 +54,11 @@ module.exports.categoriesThisMonth = function(req, res) {
       }
 
       var categoriesThisMonth = [];
-      for (var i = 0; i < dataMonth.length; i++) {
-        var data = dataMonth[i];
+      for (var i = 0; i < dataArray.length; i++) {
+        var data = dataArray[i];
         var family = data.sectionLabel;
         if (findExisitingField() === false) {
-          categoriesThisMonth.push([family]);
+          categoriesThisMonth.push([family, 0]);
         };
         addData(categoriesThisMonth);
       };
