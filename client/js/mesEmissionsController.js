@@ -49,7 +49,8 @@ begreen.controller('mes-emissions', ['$scope', '$location', 'Emission', function
                     value: 0,
                     width: 1,
                     color: '#4ab56f'
-                }]
+                }],
+                min: 0
             },
             tooltip: {
                 valueSuffix: 'kg CO2'
