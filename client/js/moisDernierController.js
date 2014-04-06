@@ -12,7 +12,7 @@ begreen.controller('mois-dernier', ['$scope', '$location', 'Emission', function(
                       text: ''
                   },
                   tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    pointFormat: 'Part d\'émission: <b>{point.percentage:.1f}%</b>'
                   },
                   plotOptions: {
                       pie: {

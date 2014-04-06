@@ -75,36 +75,68 @@ module.exports.lastMonths = function(req, res) {
     }
     else {
       // addMonths
-      function addMonths(date, months) {
-        date.setMonth(date.getMonth() + months);
-        return date;
-      }
+      // function addMonths(date, months) {
+      //   date.setMonth(date.getMonth() + months);
+      //   return date;
+      // }
 
-      var maDate = new Date();
-      maDate.setDate(15);
-      var maDate = addMonths(maDate, -5);
-      var currentYear = maDate.getFullYear();
+      // var maDate = new Date();
+      // console.log(maDate);
+      // maDate.setDate(15);
+      // var maDate = addMonths(maDate, -12);
+      // console.log(maDate);
+
+      var msecPerMinute = 1000 * 60;
+      var msecPerHour = msecPerMinute * 60;
+      var msecPerDay = msecPerHour * 24;
+      var startDate = new Date(2013, 00, 15);
+      // startDate = startDate.getFullYear()+'-'+startDate.getMonth()+'-'+startDate.getDate();
+      var currentDate = new Date();
+      currentDate.setDate(15);
+      // currentDate = currentDate.getFullYear()+'-'+currentDate.getMonth()+'-'+currentDate.getDate();
+      console.log(startDate);
+      console.log(currentDate);
+      var diff = currentDate.getTime() - startDate.getTime();
+      console.log(diff);
+      var monthsDiff = (Math.floor(diff / msecPerDay)) / 30;
+      console.log(monthsDiff);
+
       var dateArray = [];
-      var date;
-      for (var i = 0; i < 6; i++) {
-        var month = maDate.getMonth();
-        var year = maDate.getFullYear();
-        var fullDate = year + '-' + month;
+
+      var lastMonthsDatas = [];
+
+      for (var i = 0; i < monthsDiff; i++) {
+        var fullDate = startDate.getFullYear() + '-' + startDate.getMonth();
         dateArray.push(fullDate);
-        maDate.setMonth(maDate.getMonth() + 1);
+        lastMonthsDatas.push(0);
+        startDate.setMonth(startDate.getMonth() + 1);
       };
+      console.log(dateArray);
+
+
+
+
+
+      // for (var i = 0; i < monthsDiff; i++) {
+      //   var fullDate = maDate.getFullYear() + '-' + maDate.getMonth();
+      //   dateArray.push(fullDate);
+      //   lastMonthsDatas.push(0);
+      //   maDate.setMonth(maDate.getMonth() + 1);
+      // };
+      // console.log(dateArray);
 
       function findDate (fullDate) {
         var index = dateArray.indexOf(fullDate);
+        // console.log(index);
         return index
       }
 
-      var lastMonthsDatas = [];
+      // var lastMonthsDatas = [];
       for (var i = 0; i < instances.length; i++) {
         var data = instances[i];
-        var month = data.month;
-        var year = data.timestamp.getFullYear();
-        var fullDate = year + '-' + month;
+        // var month = data.month;
+        // var year = data.timestamp.getFullYear();
+        var fullDate = data.timestamp.getFullYear() + '-' + data.month;
         var index = findDate(fullDate);
         if (index != -1) {
           if (lastMonthsDatas[index]) {

@@ -1,18 +1,19 @@
 begreen.controller('mes-emissions', ['$scope', '$location', 'Emission', function($scope, $location, Emission) {
 
-      function addMonths(date, months) {
-        date.setMonth(date.getMonth() + months);
-        return date;
-      }
-
-      var maDate = addMonths(new Date(), -4); // six months before now
-      maDate.setDate(15);
+      var msecPerMinute = 1000 * 60;
+      var msecPerHour = msecPerMinute * 60;
+      var msecPerDay = msecPerHour * 24;
+      var startDate = new Date(2013, 00, 15);
+      var currentDate = new Date();
+      currentDate.setDate(15);
+      var diff = currentDate.getTime() - startDate.getTime();
+      var monthsDiff = (Math.floor(diff / msecPerDay)) / 30;
       var dateArray = [];
-      var date;
-      for (var i = 0; i < 6; i++) {
-        var index = maDate.getMonth();
-        dateArray.push(index);
-        maDate.setMonth(maDate.getMonth() + 1);
+      var lastMonthsDatas = [];
+      for (var i = 0; i < monthsDiff; i++) {
+        dateArray.push(startDate.getMonth());
+        lastMonthsDatas.push(0);
+        startDate.setMonth(startDate.getMonth() + 1);
       };
       var month = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
       var dateFormatedArray = [];
