@@ -263,7 +263,9 @@ module.exports.lastMonthsCategories = function(req, res) {
             name: data.sectionLabel,
             data: [0,0,0,0,0,0]
           }
+          indexForLastMonthsCategories = lastMonthsCategories.length ;
           lastMonthsCategories.push(toAdd);
+
         }
         index = dateArray.indexOf(data.timestamp.getFullYear()+'-'+data.month);
         if(index != -1) {

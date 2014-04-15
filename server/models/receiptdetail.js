@@ -50,7 +50,11 @@ ReceiptDetail.withReceiptId = function(receiptIdValue, callback) {
 
 ReceiptDetail.afterInitialize = function () {
     var family = 'a'+this.family;
-    this.emission = baseCarbone[family].empreinteCarbone;
+    if (family in baseCarbone) {
+        this.emission = baseCarbone[family].empreinteCarbone;
+    } else {
+        this.emission = 0 ;
+    }
 
     var date = new Date (this.timestamp);
     this.month = date.getMonth();
